@@ -1,0 +1,68 @@
+{
+  "name": "react-es6-webpack-boilerplate",
+  "version": "4.0.0",
+  "description": "Boilerplate for kick starting a React Project with ES6 (Babel) and Hot reloader using Webpack.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js",
+    "build": "./node_modules/.bin/cross-env BABEL_ENV=production ./node_modules/.bin/webpack --config webpack.config.js",
+    "lint": "./node_modules/.bin/eslint .",
+    "transformation": "node transformation/transformation.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vasanthk/react-es6-webpack-boilerplate.git"
+  },
+  "keywords": [
+    "react",
+    "es6",
+    "babel",
+    "webpack"
+  ],
+  "author": "Vasanth Krishnamoorthy (http://www.vasanthk.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/vasanthk/react-es6-webpack-boilerplate/issues"
+  },
+  "homepage": "https://github.com/vasanthk/react-es6-webpack-boilerplate",
+  "dependencies": {
+    "ast-hoist": "^3.1.0",
+    "ast-redeclare": "^1.0.4",
+    "ast-types": "^0.9.2",
+    "babel-runtime": "^6.3.19",
+    "check-type": "^0.4.11",
+    "escope": "^3.6.0",
+    "esprima": "^3.1.2",
+    "esprima-ast-utils": "0.0.6",
+    "estraverse": "^4.2.0",
+    "function-extractor": "0.0.5",
+    "hoister": "0.0.2",
+    "minimist": "^1.2.0",
+    "node-dir": "^0.1.16",
+    "node-libs-browser": "^2.0.0",
+    "read-package-json": "^2.0.4",
+    "url": "^0.11.0",
+    "write": "^0.3.2"
+  },
+  "devDependencies": {
+    "babel-core": "^6.3.21",
+    "babel-eslint": "^5.0.0-beta6",
+    "babel-loader": "^6.2.0",
+    "babel-plugin-react-transform": "^2.0.0-beta1",
+    "babel-plugin-transform-runtime": "^6.3.13",
+    "babel-preset-es2015": "^6.3.13",
+    "cross-env": "^3.1.1",
+    "css-loader": "^0.25.0",
+    "dom-loader": "^1.0.4",
+    "eslint": "^0.21.2",
+    "eslint-plugin-react": "^2.3.0",
+    "extract-loader": "0.0.2",
+    "file-loader": "^0.9.0",
+    "html-webpack-plugin": "^2.24.1",
+    "json-loader": "^0.5.4",
+    "reactive-elements": "^0.6.7",
+    "url-loader": "^0.5.7",
+    "webpack": "^1.8.4",
+    "webpack-dev-server": "^1.8.0"
+  }
+}

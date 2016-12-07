@@ -1,0 +1,32 @@
+<link rel="import" href="../../node_modules/@polymer/polymer/polymer.html">
+<script src="../../node_modules/jquery/dist/jquery.js"></script>
+
+<link rel="stylesheet" href="timepicker/jquery.timepicker.css">
+<script src="timepicker/jquery.timepicker.js"></script>
+
+<dom-module id="jquery-timepicker">
+  <template>
+      <input id="timepick" />
+  </template>
+
+  <script>
+  jQuery.noConflict();
+  (function($) {
+      $(function() {
+          let element;
+            Polymer({
+              is: "jquery-timepicker",
+              properties: {
+              },
+
+              ready: function() {
+                element = $(this.$.timepick);
+                let that = this;
+
+                element.timepicker();
+              }
+            });
+      });
+  })(jQuery);
+  </script>
+</dom-module>
