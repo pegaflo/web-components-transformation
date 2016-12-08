@@ -13,5 +13,9 @@ module.exports = {
 
 	generateSynchronizeFunction: function(properties, functions) {
 		return synchronise.generateSynchronizeFunction(properties, functions);
+	},
+
+	getCreationFunction: function(analysisResult, detectedComponentType) {
+		return extractFunction.extractCreationFunction(analysisResult, detectedComponentType);
 	}
 }

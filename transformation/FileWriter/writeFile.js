@@ -2,13 +2,15 @@ var fs = require("fs");
 var util = require('util');
 
 module.exports = {
-	writeComponentFile: function(componentName, paths) {
+	writeComponentFile: function(componentName, detectedComponentType, properties, synchronizeFunction, visualFile, template, creationFunction) {
 		var stream = fs.createWriteStream("./dist/component/" + componentName + ".html");
 		stream.once('open', function(fd) {
-
-			paths.forEach(function(p) {
-				stream.write(p + "\n");
-			});
+			stream.write(detectedComponentType + '\n');
+			stream.write(properties + '\n');
+			stream.write(synchronizeFunction + '\n');
+			stream.write(visualFile + '\n');
+			stream.write(template + '\n');
+			stream.write(creationFunction + '\n');
 		  stream.end();
 		})
 	},
@@ -23,6 +25,8 @@ module.exports = {
 		  stream.end();
 		})
 		//console.log("Style File is written!");
+
+		return "./dist/component/" + componentName + "." + filename;
 	},
 
 	debugWriteFile: function(componentName, content) {

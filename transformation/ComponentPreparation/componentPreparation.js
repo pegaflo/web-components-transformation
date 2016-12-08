@@ -20,11 +20,13 @@ module.exports = {
 		});
 	},
 
-	findJavaScriptFiles: function(filePaths) {
+	findJavaScriptFile: function(filePaths, componentMainFile) {
 		//find all .js-files, and exclude the minified versions
 		filePaths.forEach(function(path) {
-			if((path.endsWith(".js")) && (!path.endsWith(".min.js"))) {
-				foundJsFiles.push(path);
+			if(path.endsWith(componentMainFile)) {
+				if(!path.includes("dist")) {
+					foundJsFiles.push(path);
+				}
 			}
 		});
 

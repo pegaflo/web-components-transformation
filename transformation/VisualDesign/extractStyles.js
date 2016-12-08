@@ -17,7 +17,7 @@ module.exports = {
 		//console.log("Path to the Style Files extracted!");
 
 		//console.log("Style File will be written...");
-		FileWriter.writeVisualFile(componentName, paths, "styles.html");
+		return FileWriter.writeVisualFile(componentName, paths, "styles.html");
 	}
 
 }

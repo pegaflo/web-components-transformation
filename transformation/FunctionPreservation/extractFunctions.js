@@ -1,5 +1,5 @@
 let functionExtractor = require("function-extractor");
-let HashMap = require('hashmap');
+let estraverse = require("estraverse");
 
 module.exports = {
 	extractFunctionDefinition: function(analysisResult) {
@@ -15,6 +15,19 @@ module.exports = {
 		});
 
 		return functionDefinition;
+	},
+
+	extractCreationFunction: function(analysisResult, detectedComponentType) {
+		let creationFunctionName;
+		estraverse.traverse(analysisResult, {
+			enter: function(node, parent) {
+				if(node.type === "MemberExpression" && node.property.name === "widget" && node.object.name === "$") {
+						creationFunctionName = parent.arguments[0].value.split(".")[1]
+				}
+			}
+		});
+
+		return creationFunctionName;
 	}
 
 }

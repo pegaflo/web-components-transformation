@@ -5,7 +5,8 @@
 <script src="../../node_modules/lightgallery/dist/js/lightgallery.js"></script>
 
 <dom-module id="jquery-lightgallery">
-  <template class="entry">
+  <template>
+	  <div id="entry"></div>
   </template>
 
   <script>
@@ -19,7 +20,13 @@
               },
 
               ready: function() {
-                  console.log(document.getElementsByTagName("jquery-lightgallery"));
+				  //document.getElementsByTagName("template").appendChild(newNode);
+                  var templateNodes = document.getElementsByTagName("jquery-lightgallery")[0].__dom.childNodes;
+				  for(let node of templateNodes) {
+					  console.log(node);
+					  this.$.entry.appendChild(document.importNode(node, true));
+				  }
+
                   //console.log($("#lightgallery"));
                   //let templateNode = $("#lightgallery").getNode();
                   //let node = document.importNode(templateNode, true);

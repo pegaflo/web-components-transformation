@@ -34,6 +34,7 @@
     "escope": "^3.6.0",
     "esprima": "^3.1.2",
     "esprima-ast-utils": "0.0.6",
+    "esprima-fb": "^15001.1001.0-dev-harmony-fb",
     "estraverse": "^4.2.0",
     "function-extractor": "0.0.5",
     "hoister": "0.0.2",
