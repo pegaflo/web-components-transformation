@@ -1,0 +1,205 @@
+.tagger {
+  border: 1px solid #aaa;
+  background-color: #fff;
+  cursor: text;
+  font-family: sans-serif;
+  font-size: 10pt;
+  padding: 1px 1px 0 1px;
+  min-height: 19px;
+  display: inline-block;
+}
+.tagger.focus {
+  outline: auto 5px #69CAE8;
+}
+.tagger-readonly {
+  background-color: #ebebeb;
+  cursor: default;
+}
+.tagger * {
+  cursor: default;
+}
+
+.tagger .clearer {
+  clear: both;
+  height: 0;
+  width: 0;
+  line-height: 0;
+  margin: 0;
+  padding: 0;
+  font-size: 0;
+}
+
+.tagger .tagger-buttons {
+  display: block;
+  float: right;
+}
+
+.tagger .droparrow {
+  display: block;
+  float: left;
+  cursor: pointer;
+  padding: 7px 4px 9px 4px;
+  width: 7px;
+}
+
+.tagger .droparrow img {
+  display: block;
+}
+
+.tagger .droparrow:focus {
+  background: #cee4f2;
+}
+
+.tagger .search {
+  display: block;
+  float: left;
+  padding: 1px 4px 1px 4px;
+  width: 16px;
+}
+
+.tagger .tag {
+  display: block;
+  float: left;
+  width: auto;
+  background-color: #f0f5ff;
+  border: 1px solid #aaa;
+  border-radius: 3px;
+  padding: 0 4px;
+  margin: 0 1px 1px 0;
+  white-space: nowrap;
+}
+
+.tagger .tag.freetext {
+  border-style: dashed;
+}
+
+.tagger .tag-single.freetext {
+  border-style: none;
+}
+
+.tagger .tag-single {
+  background-color: transparent;
+  border: none;
+}
+
+.tagger .tag-readonly {
+  color: #545454;
+}
+
+.tagger .tag .removetag {
+  padding: 5px 0 0 3px;
+}
+
+.tagger .removetag-single {
+  display: block;
+  float: left;
+  padding: 6px 3px 5px 3px;
+  border-right: 1px solid #aaa;
+  line-height: 0px;
+  font-size: 0pt;
+}
+
+.tagger .hittarget, .tagger .hittarget * {
+  cursor: pointer;
+}
+
+.tagger .intxt {
+  display: inline-block;
+  float: left;
+  font: inherit;
+  border: none;
+  outline: none;
+  cursor: text;
+  margin: 0 0 1px 4px;
+  padding: 0px;
+
+	-webkit-transition: opacity 250ms linear 0s;
+	-moz-transition: opacity 250ms linear 0s;
+	-o-transition: opacity 250ms linear 0s;
+	transition: opacity 250ms linear 0s;
+}
+
+.filterCleared {
+  opacity: 0;
+}
+
+.tagger .filtertxt {
+  display: inline-block;
+  font: inherit;
+  cursor: text;
+  margin: 2px 0 2px 2px;
+  width: 99%;
+}
+
+.tagger .hiddenInputSpan {
+  position: absolute;
+  top: -9999px;
+  left: -9999px;
+  width: auto;
+  white-space: nowrap;
+}
+
+.tagger .suggestions {
+  display: none;
+  float: left;
+  margin-left: -2px;
+  position: absolute;
+  background-color: #fff;
+  max-height: 200px;
+  _height: expression( this.scrollHeight > 200 ? "200px" : "auto" );
+  overflow: auto;
+  overflow-x: hidden;
+  border: 1px solid #aaa;
+  z-index: 9999;
+}
+
+.tagger .suggestions ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.tagger .suggestions ul li {
+  cursor: pointer;
+  background-color: #fff;
+  padding: 3px;
+  width: 100%;
+}
+.tagger .suggestions ul li * {
+  cursor: pointer;
+}
+.tagger .suggestions ul li:nth-child(odd) {
+  background-color: #f0f5ff;
+}
+.tagger .suggestions ul li.focus {
+  background-color: #cee4f2;
+}
+.tagger .suggestions ul .extra {
+  color: #777;
+  font-style: italic;
+}
+.tagger .suggestions ul li.missing,
+.tagger .suggestions ul li.message,
+.tagger .suggestions ul li.limited {
+  cursor: default;
+  text-align: center;
+}
+.tagger .suggestions ul li.disabled {
+  cursor: default;
+  background-color: #eee !important;
+}
+.tagger .suggestions ul li.message.error {
+  color: #F00;
+  font-style: italic;
+  text-align: center;
+  cursor: default;
+}
+
+.tagger .suggestions ul li.addfreetext {
+  text-align: center;
+  background-color: #F1F9E5;
+}
+
+.tagger .suggestions ul li.addfreetext.focus {
+  background-color: #c9f9c6;
+}

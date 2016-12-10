@@ -78,9 +78,7 @@ $.widget( "evol.colorpicker", {
 		transparentColor: false,
 		history: true,
 		defaultPalette: 'theme', // possible values: 'theme', 'web'
-		strings: 'Theme Colors,Standard Colors,Web Colors,Theme Colors,Back to Palette,History,No history yet.',
-		test1: ['test3', 'test4'],
-		number: 2.3
+		strings: 'Theme Colors,Standard Colors,Web Colors,Theme Colors,Back to Palette,History,No history yet.'
 	},
 
 	// this is only true while showing the palette until color is chosen

@@ -13,6 +13,17 @@ module.exports = {
 		});
 	},
 
+	getPolymerFilePath: function(callback) {
+		dir.paths(__dirname + "/../../", true, function(err, paths) {
+			if (err) throw err;
+			paths.forEach(function(path) {
+				if(path.endsWith("polymer.html")) {
+					callback(path);
+				}
+			});
+		})
+	},
+
 	parseJavaScriptFile: function(path, callback) {
 		fs.readFile(path, 'utf8', function (err,data) {
 		  if (err) throw err;

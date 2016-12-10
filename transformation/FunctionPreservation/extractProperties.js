@@ -9,7 +9,8 @@ module.exports = {
 		estraverse.traverse(analysisResult, {
 			enter: function(node, parent) {
 				if(detectedComponentType == "jquery") {
-					if(node.type == "Property") {
+					if(node.type == "Property" && node.key.name == "options") {
+						//console.log(node.key.name);
 						if(node.value.properties !== undefined) {
 							foundProperties = node.value.properties;
 						}
@@ -54,7 +55,27 @@ module.exports = {
 		}
 	},
 
-	postProcess: function() {
+	/*
+	* transform the extracted properties, standard values and datatypes in a structure
+	* for the usage in the component file with the web components library Polymer
+	*
+	* returns a properties object with all values and a special value to reflectToAttribute
+	*/
+	postProcess: function(properties) {
+		let transformedProps = "\t\t\t\t\tproperties: {\n";
 
+		for(let value of properties) {
+			transformedProps += "\t\t\t\t\t\t" + value.name + ":{\n";
+			transformedProps += "\t\t\t\t\t\t\ttype: " + module.exports.capitalizeFirstLetter(value.dataType) + ",\n";
+			transformedProps += "\t\t\t\t\t\t\tvalue: " + JSON.stringify(value.default) + ",\n";
+			transformedProps += "\t\t\t\t\t\t\treflectToAttribute: true\n";
+			transformedProps += "\t\t\t\t\t\t},\n"; //TODO: last iteration without comma
+		}
+		transformedProps += "\t\t\t\t\t},\n";
+		return transformedProps;
+	},
+
+	capitalizeFirstLetter: function(string) {
+    	return string.charAt(0).toUpperCase() + string.slice(1);
 	}
 }

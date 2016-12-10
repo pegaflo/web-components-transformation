@@ -2,15 +2,47 @@ var fs = require("fs");
 var util = require('util');
 
 module.exports = {
-	writeComponentFile: function(componentName, detectedComponentType, properties, synchronizeFunction, visualFile, template, creationFunction) {
+	writeComponentFile: function(componentName, detectedComponentType, properties, attributeChangedFunction, creationFunction, visualFile, template, componentMainFile, polymerPath) {
 		var stream = fs.createWriteStream("./dist/component/" + componentName + ".html");
 		stream.once('open', function(fd) {
-			stream.write(detectedComponentType + '\n');
-			stream.write(properties + '\n');
-			stream.write(synchronizeFunction + '\n');
-			stream.write(visualFile + '\n');
-			stream.write(template + '\n');
-			stream.write(creationFunction + '\n');
+			stream.write("<link rel='import' href='" + polymerPath + "'>\n");
+			stream.write("<link rel='import' href='" + visualFile + "'>\n");
+			stream.write("<script src='" + componentMainFile + "'></script>\n\n");
+
+			stream.write("<dom-module id='" + componentName + "'>\n");
+				//stream.write(template[0].template);
+				template.forEach(function(value) {
+					stream.write(value.templateDefinition);
+				});
+
+				stream.write("\t<script>\n");
+					if(detectedComponentType == "jquery") {
+						stream.write("\t\tjQuery.noConflict();\n");
+						stream.write("\t\t(function($) {\n");
+						stream.write("\t\t\t$(function()  {\n");
+						stream.write("\t\t\t\tlet element;\n");
+						stream.write("\t\t\t\tPolymer({\n");
+
+						stream.write("\t\t\t\t\tis: '" +  componentName + "',\n");
+						stream.write(properties);
+
+						stream.write(creationFunction);
+						stream.write(attributeChangedFunction);
+
+						stream.write("\t\t\t\t});\n");
+						stream.write("\t\t\t});\n");
+						stream.write("\t\t})(jQuery)\n");
+					}
+
+				stream.write("\t</script>\n");
+			stream.write("</dom-module>");
+
+			//stream.write(detectedComponentType + '\n');
+			//stream.write(properties + '\n');
+			//stream.write(attributeChangedFunction + '\n');
+			//stream.write(creationFunction + '\n');
+			//stream.write(visualFile + '\n');
+			//stream.write(template + '\n');
 		  stream.end();
 		})
 	},

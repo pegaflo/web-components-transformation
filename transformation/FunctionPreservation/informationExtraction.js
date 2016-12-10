@@ -11,11 +11,19 @@ module.exports = {
 		return extractProperties.extractProperties(analysisResult, detectedComponentType);
 	},
 
-	generateSynchronizeFunction: function(properties, functions) {
-		return synchronise.generateSynchronizeFunction(properties, functions);
+	generateAttributeChangedFunction: function(properties, functions, creationFunction, detectedComponentType) {
+		return synchronise.createAttributeChangedFunction(properties, functions, creationFunction, detectedComponentType);
+	},
+
+	generateCreationFunction: function(properties, functions, creationFunction, detectedComponentType, templateObject) {
+		return synchronise.generateCreationFunction(properties, functions, creationFunction, detectedComponentType, templateObject);
 	},
 
 	getCreationFunction: function(analysisResult, detectedComponentType) {
 		return extractFunction.extractCreationFunction(analysisResult, detectedComponentType);
+	},
+
+	postProcessProperties: function(properties) {
+		return extractProperties.postProcess(properties);
 	}
 }
