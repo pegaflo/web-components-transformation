@@ -1,0 +1,113 @@
+/*
+ * ace-scroll - jQuery UI Widget 
+ * Copyright (c) 2011 Jesse Baird
+ */
+
+/*this gets applied to target element*/
+.jb-ace-scroll-target{
+    overflow:hidden;       
+
+}
+
+/*this element wrappes the scroll track and scrollbar*/
+.jb-ace-scroll-wrapper {
+	z-index: 100;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+
+.jb-ace-scroll-wrapper .jb-ace-scroll-track{
+	background-color: #E5E5E5;
+	position: absolute;
+    top: 0px;
+    right: 0px;
+    left: 0px;
+    bottom: 0px;
+}
+.jb-ace-scroll-wrapper .jb-ace-scroll-scrollbar .jb-ace-scroll-scrollbar-middle, 
+.jb-ace-scroll-wrapper .jb-ace-scroll-scrollbar .jb-ace-scroll-scrollbar-btn {
+    background-color: #8a8a8a;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    left: 0px;
+    bottom: 0px;
+}
+
+
+
+/*
+ * interaction queues
+ * these get applied to .jb-ace-scroll-wrapper
+ */
+
+.jb-state-hover .jb-ace-scroll-track,
+.jb-state-active .jb-ace-scroll-track {
+	background-color: #D6D6D6;
+}
+.jb-state-hover .jb-ace-scroll-scrollbar,
+.jb-state-hover .jb-ace-scroll-scrollbar .jb-ace-scroll-scrollbar-middle,
+.jb-state-active .jb-ace-scroll-scrollbar,
+ .jb-state-hover .jb-ace-scroll-scrollbar .jb-ace-scroll-scrollbar-middle  {
+	background-color: #6D6D6D;
+}
+
+
+/* 
+ * horizontal layout 
+ * 
+ */
+
+.jb-ace-scroll-orientation-horizontal{
+    height: 6px;
+}
+.jb-ace-scroll-orientation-horizontal .jb-ace-scroll-track .jb-ace-scroll-scrollbar{
+    width: 50px;
+    height: 6px;
+    z-index: 1;
+    position: absolute;
+    width: 30px;
+}
+
+
+.jb-ace-scroll-orientation-horizontal .jb-ace-scroll-scrollbar .jb-ace-scroll-scrollbar-btn{
+    cursor: pointer;
+    z-index: 1;
+    height: 16px;
+    display: none;
+}
+
+.jb-ace-scroll-orientation-horizontal .jb-ace-scroll-scrollbar .jb-ace-scroll-scrollbar-btn-down{
+	top: auto;
+}
+
+
+/* 
+ * vertical layout 
+ * 
+ */
+.jb-ace-scroll-orientation-vertical{
+    width: 6px;
+}
+
+.jb-ace-scroll-orientation-vertical .jb-ace-scroll-track .jb-ace-scroll-scrollbar{
+    height: 50px;
+    z-index: 1;
+    position: absolute;
+   	left: 0px;
+   	right: 0px;
+}
+
+.jb-ace-scroll-orientation-vertical .jb-ace-scroll-scrollbar .jb-ace-scroll-scrollbar-btn{
+    cursor: pointer;
+    z-index: 1;
+    height: 16px;
+    display: none;
+}
+
+.jb-ace-scroll-orientation-vertical .jb-ace-scroll-scrollbar .jb-ace-scroll-scrollbar-btn-down{
+	top: auto;
+}
+

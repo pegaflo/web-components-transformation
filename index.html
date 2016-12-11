@@ -41,21 +41,182 @@
         }
       })();
     </script>
-    <link rel="import" href="./components/jquery-colorpicker/jquery-colorpicker.html">
-	<link rel="import" href="./components/jquery-lightgallery/jquery-lightgallery.html">
+	<style>
+	.wrapper{
+		height: 401px;
+		width: 450px;
+		margin-bottom: 3em;
+		border: 1px solid black;
+	}
+
+
+	.wrapper .content .wrapper{
+		width: 50%;
+		height: 25%;
+		margin: 2em;
+	}
+	</style>
+
+    <link rel="import" href="./dist/jquery-colorpicker/jquery-colorpicker.html">
+	<link rel="import" href="./dist/jquery-month-selector/jquery-month-selector.html">
+	<link rel="import" href="./dist/jquery-tagger/jquery-tagger.html">
+	<link rel="import" href="./dist/jquery-polygonal-graph/jquery-polygonal-graph.html">
+	<link rel="import" href="./dist/jquery-item-selector/jquery-item-selector.html">
+	<link rel="import" href="./dist/jquery-item-l2l/jquery-item-l2l.html">
+	<link rel="import" href="./dist/jquery-acescroll/jquery-acescroll.html">
+	<link rel="import" href="./dist/jquery-carousel/jquery-carousel.html">
 
 </head>
 <body>
-    <div id='root'></div>
-
-    <jquery-colorpicker-v2>
-		<input id="colorpick" />
-	</jquery-colorpicker-v2>
-
 	<jquery-colorpicker>
 		<input id="colorpick" />
 	</jquery-colorpicker>
-    <jquery-timepicker></jquery-timepicker>
+
+	<jquery-tagger availableTags="peopleData;" no-suggest-text="Nichts zu sehen" displayHierarchy="false" indentMultiplier="2" fieldWidth="null">
+		<select id="start"></select>
+	</jquery-tagger>
+
+
+	<!--<jquery-month-selector end="new Date();">
+		<div id="selector"></div>
+	</jquery-month-selector>
+-->
+
+	<!--<jquery-polygonal-graph labels="test" data="test" grid="true">
+		<canvas id="myCanvas" width="400" height="400"></canvas>
+	</jquery-polygonal-graph>
+-->
+
+	<jquery-item-selector items>
+		<div id="items"></div>
+	</jquery-item-selector>
+
+
+	<jquery-item-l2l>
+		<div id="my-lists">
+		    <ul>
+		        <li>Item 1</li>
+		        <li>Item 2</li>
+		        <li>Item 3</li>
+		    </ul>
+		    <ul></ul>
+		</div>
+	</jquery-item-l2l>
+
+	<jquery-acescroll>
+		<div id="content2" class="wrapper">
+
+			<div class="table">
+
+
+				<h1>This is a demo</h1>
+
+			<p>
+				Lorem ipsum omnium omnesque persecuti pri eu, ex eos albucius apeirian dignissim. Ei ludus veniam sit, mel fugit vulputate no. Ad sonet delenit tibique sea. Has voluptua cotidieque referrentur in, vim no mandamus theophrastus.
+			</p>
+			<p>
+				Rebum ludus verterem an sit. Usu soleat placerat inimicus no, in liber debitis consulatu usu. Cetero vivendum reprimique eam at. Ad mazim elaboraret est, modus detraxit adolescens ad has. Mentitum atomorum sit id, ex aperiam erroribus ius. Ea has aliquyam honestatis liberavisse.
+			</p>
+
+			<p>
+				Sit legere dissentiunt ne, vis officiis contentiones ei, eam munere commodo pertinax ut. Duo novum aliquam periculis te, et soluta fabulas pri, id feugiat admodum ius. Ad dico expetendis dissentiet qui, per epicurei expetenda ut. In tota copiosae efficiantur nec, assum fabulas scripserit et pri. Eos an dicat corrumpit, nonumy viderer ius eu.
+			</p>
+			<hr />
+			<h1>Important Employees</h1>
+				<table id="one">
+					<thead class="test">
+						<tr>
+							<th>ID</th>
+							<th>first name</th>
+							<th>last name</th>
+							<th>phone number</th>
+							<th>team color</th>
+							<th>salary</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>10234</td>
+							<td>John</td>
+							<td>Smith</td>
+							<td>555-555-5555</td>
+							<td>orange</td>
+							<td>$2.00</td>
+						</tr>
+						<tr>
+							<td>102288</td>
+							<td>Jane</td>
+							<td>Smith</td>
+							<td>555-445-5555</td>
+							<td>purplue</td>
+							<td>$1000.00</td>
+						</tr>
+						<tr>
+							<td>11534</td>
+							<td>Ben</td>
+							<td>Dover</td>
+							<td>555-443-5555</td>
+							<td>pink</td>
+							<td>$200.00</td>
+						</tr>
+						<tr>
+							<td>2153</td>
+							<td>Goldy</td>
+							<td>Dilgger</td>
+							<td>555-555-2562</td>
+							<td>blue</td>
+							<td>$200.40</td>
+						</tr>
+						<tr>
+							<td>1</td>
+							<td>Steve</td>
+							<td>Southwest</td>
+							<td>554-555-3562</td>
+							<td>orange</td>
+							<td>$710.40</td>
+						</tr>
+					</tbody>
+				</table>
+			<hr />
+
+			<p>
+				Lorem ipsum omnium omnesque persecuti pri eu, ex eos albucius apeirian dignissim. Ei ludus veniam sit, mel fugit vulputate no. Ad sonet delenit tibique sea. Has voluptua cotidieque referrentur in, vim no mandamus theophrastus.
+			</p>
+			<p>
+				Rebum ludus verterem an sit. Usu soleat placerat inimicus no, in liber debitis consulatu usu. Cetero vivendum reprimique eam at. Ad mazim elaboraret est, modus detraxit adolescens ad has. Mentitum atomorum sit id, ex aperiam erroribus ius. Ea has aliquyam honestatis liberavisse.
+			</p>
+
+			<p>
+				Sit legere dissentiunt ne, vis officiis contentiones ei, eam munere commodo pertinax ut. Duo novum aliquam periculis te, et soluta fabulas pri, id feugiat admodum ius. Ad dico expetendis dissentiet qui, per epicurei expetenda ut. In tota copiosae efficiantur nec, assum fabulas scripserit et pri. Eos an dicat corrumpit, nonumy viderer ius eu.
+			</p>
+
+			<h1>This is a demo</h1>
+
+			<p>
+				Lorem ipsum omnium omnesque persecuti pri eu, ex eos albucius apeirian dignissim. Ei ludus veniam sit, mel fugit vulputate no. Ad sonet delenit tibique sea. Has voluptua cotidieque referrentur in, vim no mandamus theophrastus.
+			</p>
+			<p>
+				Rebum ludus verterem an sit. Usu soleat placerat inimicus no, in liber debitis consulatu usu. Cetero vivendum reprimique eam at. Ad mazim elaboraret est, modus detraxit adolescens ad has. Mentitum atomorum sit id, ex aperiam erroribus ius. Ea has aliquyam honestatis liberavisse.
+			</p>
+
+			<p>
+				Sit legere dissentiunt ne, vis officiis contentiones ei, eam munere commodo pertinax ut. Duo novum aliquam periculis te, et soluta fabulas pri, id feugiat admodum ius. Ad dico expetendis dissentiet qui, per epicurei expetenda ut. In tota copiosae efficiantur nec, assum fabulas scripserit et pri. Eos an dicat corrumpit, nonumy viderer ius eu.
+			</p>
+			</div>
+		</div>
+	</jquery-acescroll>
+
+	<jquery-carousel>
+		<ul data-role="carousel" id="carousel">
+		   <li><img alt="" src="img/1.jpg"/></li>
+		   <li><img alt="" src="img/2.jpg"/></li>
+		   <li><img alt="" src="img/4.jpg"/></li>
+		 </ul>
+	</jquery-carousel>
+
+
+
+	<!--<jquery-timepicker></jquery-timepicker>
 	<jquery-lightgallery>
 		<div id="template">
 			<a href="">
@@ -63,6 +224,49 @@
         	</a>
 		</div>
 	</jquery-lightgallery>
+-->
 
+	<script>
+		var acc = [ [ 'Example category', [ 'Item 1', 'Item 2', 'Another Item' ] ], [ '2nd Category', [ 'item1', 'item2', 'item3' ] ] ];
+
+		var peopleData =
+		{ "item0":
+		  {
+			"id": "item0",
+			"selected": "true",
+			"level": "0",
+			"hidden": ",jeldredge@example.com",
+			"suggestion": "&lt;img src=\"img\/online.png\"\/> Jonah Eldredge &lt;span class=\"extra\">jeldredge@example.com&lt;\/span>",
+			"key": "Jonah Eldredge",
+			"suggestable": "true",
+			"sort": 0
+		  },
+		  "item1":
+		  {
+			"id": "item1",
+			"level": "1",
+			"hidden": ",rd@example.com",
+			"suggestion": "&lt;img src=\"img\/online.png\"\/> Mr Ray Duran &lt;span class=\"extra\">rd@example.com&lt;\/span>",
+			"key": "Mr Ray Duran",
+			"suggestable": "true",
+			"sort": -10
+		   }
+	   };
+
+		var labels = ['ATT', 'DEF', 'SPD', 'ENE', 'MEN'];  // labels that will be displayed
+		var data = [90, 74, 73, 64, 66];
+
+		document.getElementsByTagName("jquery-tagger")[0].availableTags = peopleData;
+
+		document.getElementsByTagName("jquery-item-selector")[0].items = acc;
+		document.getElementsByTagName("jquery-item-selector")[0].callback = function(element, id) {
+						//$('#msg').html('Currently selected item : ' + acc[id[0]][0] + ', ' + acc[id[0]][1][id[1]]);
+						console.log('Currently selected item : ' + acc[id[0]][0] + ', ' + acc[id[0]][1][id[1]]);
+					};
+
+		document.getElementsByTagName("jquery-polygonal-graph")[0].labels = labels;
+		document.getElementsByTagName("jquery-polygonal-graph")[0].data = data;
+		document.getElementsByTagName("jquery-polygonal-graph")[0].grid = true;
+	</script>
 </body>
 </html>

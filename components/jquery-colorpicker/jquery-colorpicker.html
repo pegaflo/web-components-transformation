@@ -1,109 +1,124 @@
-<link rel="import" href="../../node_modules/@polymer/polymer/polymer.html">
-<link rel="stylesheet" href="./jquery-colorpicker-style.css">
-<script src="../../node_modules/jquery/dist/jquery.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.0/jquery-ui.min.js" type="text/javascript"></script>
-<script src="evol-colorpicker/js/evol-colorpicker.js"></script>
+<link rel='import' href='./node_modules/@polymer/polymer/polymer.html'>
+<link rel='import' href='./dist/component/jquery-colorpicker.styles.html'>
+<script src='./node_modules/jquery-ui-1.12.1/jquery-ui.js'></script>
+<script src='./node_modules/jquery/src/jquery.js'></script>
+<script src='./components/jquery-colorpicker/evol-colorpicker/js/evol-colorpicker.js'></script>
 
-
-<dom-module id="jquery-colorpicker-v2">
-  <template>
-      <div id="entry"></div>
-  </template>
-
-  <script>
-    jQuery.noConflict();
-    (function($) {
-        $(function() {
-            let element;
-            Polymer({
-              is: "jquery-colorpicker-v2",
-              properties: {
-                  color: {
-                      type: "String",
-                      value:"#ff00ff",
-                      reflectToAttribute: true,
-                      notify: true
-                  },
-                  showOn: {
-                      type: "String",
-                      value: "both",
-                      reflectToAttribute: true,
-                      notify: true
-                  },
-                  displayIndicator: {
-                      type: Boolean,
-                      value: false,
-                      reflectToAttribute: true,
-                      notify: true
-                  },
-                  history: {
-                      type: Boolean,
-                      value: false,
-                      reflectToAttribute: true,
-                      notify: true
-                  },
-                  strings: {
-                      type: "String",
-                      value: "Theme Colors,Standard Colors,More Colors,Less Colors,Back to Palette,History,No history yet.",
-                      reflectToAttribute: true,
-                      notify: true
-                  },
-
-              },
-
-              ready: function() {
-				  var templateNodes = document.getElementsByTagName("jquery-colorpicker-v2")[0].__dom.childNodes;
-				  var templateId;
-				  for(let node of templateNodes) {
-					if(node.id !== undefined) {
-						templateId = node.id;
+<dom-module id='jquery-colorpicker'>
+	<template>
+		<div id='entry'></div>
+	</template>
+	<script>
+		jQuery.noConflict();
+		(function($) {
+			$(function()  {
+				let element;
+				Polymer({
+					is: 'jquery-colorpicker',
+					properties: {
+						color:{
+							type: Object,
+							value: null,
+							reflectToAttribute: true
+						},
+						showOn:{
+							type: String,
+							value: "both",
+							reflectToAttribute: true
+						},
+						hideButton:{
+							type: Boolean,
+							value: false,
+							reflectToAttribute: true
+						},
+						displayIndicator:{
+							type: Boolean,
+							value: true,
+							reflectToAttribute: true
+						},
+						transparentColor:{
+							type: Boolean,
+							value: false,
+							reflectToAttribute: true
+						},
+						history:{
+							type: Boolean,
+							value: true,
+							reflectToAttribute: true
+						},
+						defaultPalette:{
+							type: String,
+							value: "theme",
+							reflectToAttribute: true
+						},
+						strings:{
+							type: String,
+							value: "Theme Colors,Standard Colors,Web Colors,Theme Colors,Back to Palette,History,No history yet.",
+							reflectToAttribute: true
+						},
+					},
+					ready: function() {
+						var templateNodes = document.getElementsByTagName('jquery-colorpicker')[0].__dom.childNodes;
+						var nodeId;
+						for(let node of templateNodes) {
+							if(node.id !== undefined) {
+								nodeId = node.id;
+							}
+							this.$.entry.appendChild(document.importNode(node, true));
+						}
+						element = $('#' + nodeId);
+						let that = this;
+						element.colorpicker({
+							color: this.color,
+							showOn: this.showOn,
+							hideButton: this.hideButton,
+							displayIndicator: this.displayIndicator,
+							transparentColor: this.transparentColor,
+							history: this.history,
+							defaultPalette: this.defaultPalette,
+							strings: this.strings
+						}).on('change.color', function(event, attr) {
+							that.color = attr;
+						});
+					},
+					attributeChanged: function(attribute, oldValue, newValue) {
+						if(attribute === 'color') {
+							this.color = newValue;
+						}
+						if(attribute === 'showOn') {
+							this.showOn = newValue;
+						}
+						if(attribute === 'hideButton') {
+							this.hideButton = newValue;
+						}
+						if(attribute === 'displayIndicator') {
+							this.displayIndicator = newValue;
+						}
+						if(attribute === 'transparentColor') {
+							this.transparentColor = newValue;
+						}
+						if(attribute === 'history') {
+							this.history = newValue;
+						}
+						if(attribute === 'defaultPalette') {
+							this.defaultPalette = newValue;
+						}
+						if(attribute === 'strings') {
+							this.strings = newValue;
+						}
+						element.colorpicker({
+							color: this.color,
+							showOn: this.showOn,
+							hideButton: this.hideButton,
+							displayIndicator: this.displayIndicator,
+							transparentColor: this.transparentColor,
+							history: this.history,
+							defaultPalette: this.defaultPalette,
+							strings: this.strings
+						});
 					}
-					this.$.entry.appendChild(document.importNode(node, true));
-				  }
-				  //console.log(document.getElementsByTagName("jquery-colorpicker-v2")[0].__dom.childNodes[1]);
-
-                element = $("#" + templateId);
-                let that = this;
-
-                element.colorpicker({
-                        color: this.color,
-                        showOn: this.showOn,
-                        displayIndicator: this.displayIndicator,
-                        history: this.history,
-                        strings: this.strings
-                }).on('change.color', function(evt, attr){
-
-					if(evt.handleObj.namespace == 'color') {
-						that.color = attr;
-
-					}
-                });
-              },
-
-              attributeChanged: function(attribute, oldValue, newValue) {
-
-                  if(attribute === "color") {
-                      this.color = newValue;
-                  }
-
-                  element.colorpicker({
-                          color: this.color,
-                          showOn: this.showOn,
-                          displayIndicator: this.displayIndicator,
-                          history: this.history,
-                          strings: this.strings
-                  });
-                  //element.colorpicker("val", newValue);
-
-                  // let value = element.colorpicker("val");
-                  // this.color = value;
-                  // this.properties.color = value;
-                  // console.log(value);
-              }
-            });
-        });
-    })(jQuery);
-  </script>
-
-
+				});
+			});
+		})(jQuery)
+	</script>
 </dom-module>

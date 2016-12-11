@@ -8,8 +8,8 @@ module.exports = {
 
 		estraverse.traverse(analysisResult, {
 			enter: function(node, parent) {
-				if(detectedComponentType == "jquery") {
-					if(node.type == "Property" && node.key.name == "options") {
+				if(detectedComponentType === "jquery") {
+					if(node.type === "Property" && node.key.name === "options") {
 						//console.log(node.key.name);
 						if(node.value.properties !== undefined) {
 							foundProperties = node.value.properties;
@@ -31,15 +31,22 @@ module.exports = {
 	},
 
 	getDefaultValue: function(propertyObject, detectedComponentType) {
-		if(detectedComponentType == "jquery") {
+		if(detectedComponentType === "jquery") {
 			if(propertyObject.value.type === "ArrayExpression") {
 				let arrayValues = [];
 				propertyObject.value.elements.forEach(function (data) {
 					arrayValues.push(data.value);
 				});
 				return arrayValues;
+			} else if(propertyObject.value.type === "NewExpression" && propertyObject.value.callee.name === "Date") {
+				//return propertyObject.value.callee.name;
+				return new Date();
 			} else {
-				return propertyObject.value.value;
+				let defaultValue = propertyObject.value.value;
+				if(defaultValue === undefined) {
+					defaultValue = "";
+				}
+				return defaultValue;
 			}
 		}
 
@@ -51,7 +58,11 @@ module.exports = {
 		} else if( value instanceof Date) {
 			return "Date";
 		} else {
-			return typeof value;
+			let dataType = typeof value;
+			if(dataType === "undefined") {
+				dataType = "object";
+			}
+			return dataType;
 		}
 	},
 

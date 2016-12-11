@@ -1,6 +1,8 @@
 let dir = require('node-dir');
 let fs = require('fs');
 let esprima = require('esprima');
+let pathLib = require('path');
+let rootDirectory = require('app-root-dir').get();
 
 let foundJsFiles = [];
 
@@ -18,10 +20,52 @@ module.exports = {
 			if (err) throw err;
 			paths.forEach(function(path) {
 				if(path.endsWith("polymer.html")) {
-					callback(path);
+					callback(module.exports.processFilePath(path));
 				}
 			});
 		})
+	},
+
+	getFrameworkPaths: function(detectedComponentType, callback) {
+		//callback();
+		if (detectedComponentType == 'jquery') {
+			let foundPaths = [];
+			dir.paths(__dirname + "/../../", true, function(err, paths) {
+				if (err) throw err;
+				paths.forEach(function(path) {
+					if (path.endsWith("/jquery/dist/jquery.js")) {
+						foundPaths.push(module.exports.processFilePath(path));
+					}
+				});
+				paths.forEach(function(path) {
+					if (path.endsWith("jquery-ui.js")) {
+						foundPaths.push(module.exports.processFilePath(path));
+					}
+				});
+				callback(foundPaths);
+			});
+		}
+	},
+
+	/**
+	* extract the file path to the style file of the used Component Framework
+	* used by some components, when they are extend a existing component
+	*
+	* returns the path to the style file
+	*/
+	getFrameworkStylePaths: function(detectedComponentType, callback) {
+		if (detectedComponentType == 'jquery') {
+			let foundPaths = [];
+			dir.paths(__dirname + "/../../", true, function(err, paths) {
+				if (err) throw err;
+				paths.forEach(function(path) {
+					if (path.endsWith("jquery-ui.css")) {
+						foundPaths.push(module.exports.processFilePath(path));
+					}
+				});
+				callback(foundPaths);
+			});
+		}
 	},
 
 	parseJavaScriptFile: function(path, callback) {
@@ -42,5 +86,13 @@ module.exports = {
 		});
 
 		return foundJsFiles;
+	},
+
+	processJavaScriptFile: function(path) {
+		return module.exports.processFilePath(path);
+	},
+
+	processFilePath: function(path) {
+		return pathLib.relative(rootDirectory + "/dist/component/", path);
 	}
 };

@@ -1,0 +1,29 @@
+{
+"name": "polygonalGraph",
+"title": "jQuery Polygonal Graphic Widget",
+"description": "jQuery widget (widget factory) that draws a polygonal graphic using canvas tag of HTML5",
+"keywords": ["jquery", "widget", "graphic", "animation", "canvas", "HTML5"],
+"version": "1.0.0",
+"author":
+	{
+	"name": "Francesco Simeoli",
+	"email": "revilkent@hotmail.it",
+	"url": "http://revil.altervista.org/"
+	},
+"licenses":
+	[
+		{
+		"type": "MIT",
+		"url": "https://github.com/revilkent/jquery-widget-polygonal-graph/blob/master/LICENSE"
+		}
+	],
+"bugs": "https://github.com/revilkent/jquery-widget-polygonal-graph/blob/master/issues",
+"homepage": "http://revil.altervista.org/",
+"docs": "https://github.com/revilkent/jquery-widget-polygonal-graph",
+"download": "https://github.com/revilkent/jquery-widget-polygonal-graph/archive/master.zip",
+"dependencies":
+	{
+	"jquery": "1.*",
+	"jquery-ui": "1.*"
+	}
+}

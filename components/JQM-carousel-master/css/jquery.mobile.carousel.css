@@ -1,0 +1,168 @@
+.ui-carousel {
+	list-style: none outside none;
+	margin: 0 auto;
+	padding: 0;
+	text-align: center;
+	min-height: inherit;
+	height: inherit;
+	outline: 0;
+	overflow: hidden;
+	margin: 0 -15px;
+	white-space: nowrap;
+}
+.ui-carousel-inset {
+	margin: 1em auto;
+	-webkit-border-radius: 1em;
+	border-radius: 1em;
+}
+.ui-carousel li {
+	display: inline-block;
+	list-style: none outside none;
+	-webkit-border-radius: inherit;
+	border-radius: inherit;
+	overflow: inherit;
+	width: 100%;
+	height: inherit;
+	position: relative;
+}
+.ui-carousel li a {
+	-webkit-border-radius: inherit;
+	border-radius: inherit;
+	height: inherit;
+	text-decoration: none;
+	overflow: auto;
+	width: inherit;
+}
+.ui-carousel img {
+	width: 100%;
+	display: table-row-group;
+	float: left; /* fix gap made by Firefox */
+	-webkit-border-radius: inherit;
+	border-radius: inherit;
+}
+
+/* Transition positioning */
+.ui-carousel li:not(.ui-carousel-active) {
+	right: -200%;
+}
+.ui-carousel li.ui-carousel-active:nth-child(1):nth-last-child(3) {
+	right: 0%;
+}
+.ui-carousel li.ui-carousel-active:nth-child(2):nth-last-child(1),
+.ui-carousel li.ui-carousel-active:nth-child(1):nth-last-child(3) ~ li {
+	right: 100%;
+}
+.ui-carousel li.ui-carousel-active:nth-child(2):nth-last-child(2),
+.ui-carousel li.ui-carousel-active:nth-child(2):nth-last-child(2) ~ li:first-child {
+	right: 100%;
+}
+.ui-carousel li:nth-child(3):nth-last-child(1) {
+	right: -300%;
+}
+.ui-carousel li.ui-carousel-active:nth-child(3):nth-last-child(1) {
+	right: 200%;
+}
+
+/* Radios */
+.ui-carousel-controls {
+	text-align: center;
+}
+.ui-carousel-controls .ui-radio {
+	display: inline-block;
+	padding: 0 .25em;
+}
+.ui-carousel-controls .ui-radio label:after {
+	left: .2em;
+}
+
+/* Captions */
+.ui-carousel .ui-carousel-active .ui-carousel-selector {
+	display: table;
+}
+.ui-carousel-captions .ui-carousel-captions-content {
+	margin: 0;
+}
+.ui-carousel-captions .ui-carousel-captions-heading {
+	margin: 0;
+	padding: 0;
+}
+.ui-carousel-captions-top {
+	display: table-header-group;
+}
+.ui-carousel-captions-bottom {
+	display: table-footer-group;
+}
+.ui-carousel-inset .ui-carousel-captions-top ~ img {
+	-webkit-border-top-left-radius: 0;
+	border-top-left-radius: 0;
+	-webkit-border-top-right-radius: 0;
+	border-top-right-radius: 0;
+}
+.ui-carousel-inset .ui-carousel-captions-bottom ~ img {
+	-webkit-border-bottom-left-radius: 0;
+	border-bottom-left-radius: 0;
+	-webkit-border-bottom-right-radius: 0;
+	border-bottom-right-radius: 0;
+}
+
+/* handles, no fan of margin-top, try vertical-align without float... */
+.ui-carousel.ui-carousel-handles li img {
+	height: inherit;
+}
+.ui-carousel.ui-carousel-inset.ui-carousel-handles {
+	max-width: 93%;
+	display: inline-block;
+}
+.ui-carousel-handle-left.ui-carousel-handle-inset {
+	margin-right: .25em;
+	display: inline-block;
+	float: left;
+	margin-top: 50%;
+}
+.ui-carousel-handle-right.ui-carousel-handle-inset {
+	margin-left: .25em;
+	display: inline-block;
+	float: right;
+	margin-top: 50%;
+}
+.ui-carousel-handle-left:not(.ui-carousel-handle-inset) {
+	-webkit-border-bottom-left-radius: 0;
+	border-bottom-left-radius: 0;
+	-webkit-border-top-left-radius: 0;
+	border-top-left-radius: 0;
+	margin: -60% 0 0 -1.25em;
+	float: left;
+	display: inline-block;
+	padding: 0.5em;
+}
+.ui-carousel-handle-right:not(.ui-carousel-handle-inset) {
+	-webkit-border-bottom-right-radius: 0;
+	border-bottom-right-radius: 0;
+	-webkit-border-top-right-radius: 0;
+	border-top-right-radius: 0;
+	margin: -60% -1.25em 0 0;
+	float: right;
+	display: inline-block;
+	padding: 0.5em;
+}
+.ui-carousel.ui-carousel-inset.ui-carousel-handles {
+	margin: 0;
+}
+
+/* thumbnails */
+.ui-carousel.ui-carousel-thumbnails {
+	display: table;
+}
+.ui-carousel.ui-carousel-thumbnails li {
+	width: auto;
+	display: table-cell;
+	padding: .25em;
+	position: static;
+}
+.ui-carousel.ui-carousel-thumbnails li img {
+	display: inline-block;
+	float: none;
+	max-height: 5em;
+	min-height: 5em;
+	width: auto;
+}

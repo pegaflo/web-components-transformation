@@ -36,13 +36,14 @@ module.exports = {
 			}
 			//check if one of the supported Frameworks is written in this package.json
 			// is written in the keywords or the dependencies, search for a string
-			if(data.keywords.indexOf("react") !== -1 ||
-					data.dependencies.react !== undefined) {
-				detectedComponentType = "react";
-			}
-			else if(data.keywords.indexOf("jquery") !== -1 ||
-					data.dependencies.jquery !== undefined) {
+			if(data.keywords.indexOf("jquery") !== -1 ||
+				data.keywords.indexOf("jqueryui") !== -1 ||
+				data.keywords.indexOf("jquery-ui") !== -1 ||
+				(data.dependencies !== undefined && data.dependencies.jquery !== undefined)) {
 				detectedComponentType = "jquery"
+			} else if(data.keywords.indexOf("react") !== -1 ||
+					(data.dependencies !== undefined && ata.dependencies.react !== undefined)) {
+				detectedComponentType = "react";
 			}
 			callback(detectedComponentType);
 		});

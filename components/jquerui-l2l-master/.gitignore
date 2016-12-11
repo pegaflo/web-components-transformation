@@ -1,0 +1,7 @@
+#project
+build
+node_modules
+/lib
+
+#ide
+.c9revisions

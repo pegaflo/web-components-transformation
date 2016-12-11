@@ -17,6 +17,8 @@ let componentMainFile = argv.main;
 //console.log("Determinate the Component Type...");
 componentPreparation.getComponentsFilePaths(componentPath, function(filePaths) {
 
+	fileWriter.createComponentFolder(componentName);
+
 	let foundFile = componentPreparation.findJavaScriptFile(filePaths, componentMainFile);
 	let enhancedAnalysisResult;
 
@@ -24,34 +26,42 @@ componentPreparation.getComponentsFilePaths(componentPath, function(filePaths) {
 		//this transformation implementation can only find one component file and transform it
 		componentPreparation.parseJavaScriptFile(foundFile[0], function(analysisResult) {
 			let detectedComponentType = componentClassification.analyzeComponentType(filePaths, analysisResult, function(detectedComponentType) {
-				enhancedAnalysisResult = hoist(analysisResult);
 
-				let extractedFunctions = informationExtraction.getFunctions(enhancedAnalysisResult);
-				let foundProperties = informationExtraction.getProperties(enhancedAnalysisResult, detectedComponentType);
-				let detectedCreationFunction = informationExtraction.getCreationFunction(enhancedAnalysisResult, detectedComponentType);
+				let javaScriptFilePath = componentPreparation.processJavaScriptFile(foundFile[0]);
+				componentPreparation.getFrameworkPaths(detectedComponentType, function(frameworkPaths) {
+					componentPreparation.getFrameworkStylePaths(detectedComponentType, function(frameworkStylePath) {
+						enhancedAnalysisResult = hoist(analysisResult);
 
-				let visualFile = visualDesign.extractVisuals(componentName, filePaths);
-				let templateObject = visualDesign.extractTemplate(enhancedAnalysisResult, detectedComponentType, componentName);
+						let extractedFunctions = informationExtraction.getFunctions(enhancedAnalysisResult);
+						let foundProperties = informationExtraction.getProperties(enhancedAnalysisResult, detectedComponentType);
+						let detectedCreationFunction = informationExtraction.getCreationFunction(enhancedAnalysisResult, detectedComponentType);
 
-				let attributeChangedFunction = informationExtraction.generateAttributeChangedFunction(foundProperties, extractedFunctions, detectedCreationFunction, detectedComponentType);
-				let generatedCreationFunction = informationExtraction.generateCreationFunction(foundProperties, extractedFunctions, detectedCreationFunction, detectedComponentType, templateObject);
+						let visualFile = visualDesign.extractVisuals(componentName, filePaths, detectedComponentType);
+						let templateObject = visualDesign.extractTemplate(enhancedAnalysisResult, detectedComponentType, componentName);
+
+						let attributeChangedFunction = informationExtraction.generateAttributeChangedFunction(foundProperties, extractedFunctions, detectedCreationFunction, detectedComponentType);
+						let generatedCreationFunction = informationExtraction.generateCreationFunction(foundProperties, extractedFunctions, detectedCreationFunction, detectedComponentType, templateObject);
 
 
-				fileWriter.debugWriteFile(componentName, templateObject);
+						fileWriter.debugWriteFile(componentName, enhancedAnalysisResult);
 
-				//trigger function of the writing of the component fileWriter
-				// transform extracted information in a structure, so it can be copied without further transformation
-				fileWriter.writeComponentFile(
-					componentName,
-					detectedComponentType,
-					informationExtraction.postProcessProperties(foundProperties),
-					attributeChangedFunction,
-					generatedCreationFunction,
-					visualFile,
-					templateObject,
-					foundFile[0],
-					polymerPath
-				);
+						//trigger function of the writing of the component fileWriter
+						// transform extracted information in a structure, so it can be copied without further transformation
+						fileWriter.writeComponentFile(
+							componentName,
+							detectedComponentType,
+							informationExtraction.postProcessProperties(foundProperties),
+							attributeChangedFunction,
+							generatedCreationFunction,
+							visualFile,
+							templateObject,
+							javaScriptFilePath,
+							polymerPath,
+							frameworkPaths,
+							frameworkStylePath
+						);
+					});
+				});
 			});
 		});
 	});

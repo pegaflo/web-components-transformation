@@ -1,0 +1,28 @@
+{
+	"name": "mm.itemselector",
+	"title": "jQuery Item selector",
+	"description": "jQueryUI Widget that enables to display and select items using the accordion widget",
+	"keywords": [
+		"ui",
+		"selection",
+		"accordion",
+		"input"
+	],
+	"version": "1.0.3",
+	"author": {
+		"name": "Mickael Maison",
+		"url": "http://www.mickaelmaison.com"
+	},
+	"demo": "http://www.mickaelmaison.com/itemselector/",
+	"licenses": [
+		{
+			"type": "GPLv2",
+			"url": "http://opensource.org/licenses/GPL-2.0"
+		}
+	],
+	"dependencies": {
+		"jquery": ">=1.6"
+	}
+}
+
+

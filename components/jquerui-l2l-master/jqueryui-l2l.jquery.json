@@ -1,0 +1,32 @@
+{
+  "name": "jqueryui-l2l",
+  "version": "0.1.1",
+  "title": "List to List plugin for jQuery UI",
+  "description": "A JQuery UI widget that enables you to move items between 2 lists, with nice features like lasso selection, drag'n dtop, auto sort, etc.",
+  "homepage": "https://github.com/krampstudio/jquerui-l2l",
+  "demo" : "http://krampstudio.com/jquerui-l2l/",
+  "docs": "https://github.com/krampstudio/jquerui-l2l",
+  "download": "https://github.com/krampstudio/jquerui-l2l/tags",
+  "bugs" : "https://github.com/krampstudio/jquerui-l2l/issues",
+  "author": {
+     "name": "Bertrand Chevrier",
+     "email": "chevrier.bertrand@gmail.com",
+     "url": "https://github.com/krampstudio"
+  },
+  "licenses": [{
+      "type": "GPL",
+      "url": "http://www.gnu.org/licenses/gpl-3.0.txt"
+  }],
+  "dependencies": {
+    "jquery": ">=1.8",
+    "jquery-ui": ">=1.10"
+  },
+  "keywords": [
+    "list",
+    "list-to-list",
+    "l2l",
+    "jquery-ui",
+    "jqueryui",
+    "widget"
+  ]
+}

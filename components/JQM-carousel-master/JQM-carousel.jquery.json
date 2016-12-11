@@ -1,0 +1,33 @@
+{
+  "name": "JQM-carousel",
+  "title": "JQM-carousel",
+  "description": "JQM carousel is a jQuery Mobile compatible widget that converts a list element into a responsive content carousel/image gallery, which can be easily configured using data-attributes",
+  "version": "0.1.0",
+  "homepage": "https://github.com/frequent/JQM-carousel",
+  "author": {
+    "name": "Sven Franck",
+    "url": "https://github.com/frequent/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/frequent/JQM-carousel.git"
+  },
+  "bugs": "https://github.com/frequent/JQM-carousel/issues",
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://raw.github.com/frequent/JQM-carousel/master/LICENSE"
+    }
+  ],
+  "dependencies": {
+    "jquery": ">=1.9",
+    "jquery-mobile": ">=1.4"
+  },
+  "keywords": [
+    "carousel",
+    "slider",
+    "responsive",
+    "gallery",
+    "mobile"
+  ]
+}
