@@ -8,7 +8,7 @@ module.exports = {
 
 		estraverse.traverse(analysisResult, {
 			enter: function(node, parent) {
-				if(detectedComponentType === "jquery") {
+				if(detectedComponentType === "jquery-ui") {
 					if(node.type === "Property" && node.key.name === "options") {
 						//console.log(node.key.name);
 						if(node.value.properties !== undefined) {
@@ -31,7 +31,7 @@ module.exports = {
 	},
 
 	getDefaultValue: function(propertyObject, detectedComponentType) {
-		if(detectedComponentType === "jquery") {
+		if(detectedComponentType === "jquery-ui") {
 			if(propertyObject.value.type === "ArrayExpression") {
 				let arrayValues = [];
 				propertyObject.value.elements.forEach(function (data) {

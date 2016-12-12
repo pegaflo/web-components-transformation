@@ -39,27 +39,29 @@ componentPreparation.getComponentsFilePaths(componentPath, function(filePaths) {
 						let visualFile = visualDesign.extractVisuals(componentName, filePaths, detectedComponentType);
 						let templateObject = visualDesign.extractTemplate(enhancedAnalysisResult, detectedComponentType, componentName);
 
-						let attributeChangedFunction = informationExtraction.generateAttributeChangedFunction(foundProperties, extractedFunctions, detectedCreationFunction, detectedComponentType);
-						let generatedCreationFunction = informationExtraction.generateCreationFunction(foundProperties, extractedFunctions, detectedCreationFunction, detectedComponentType, templateObject);
+						informationExtraction.getChangeTrigger(enhancedAnalysisResult, foundProperties, function(changeTrigger) {
+							let attributeChangedFunction = informationExtraction.generateAttributeChangedFunction(foundProperties, extractedFunctions, detectedCreationFunction, detectedComponentType);
+							let generatedCreationFunction = informationExtraction.generateCreationFunction(foundProperties, extractedFunctions, detectedCreationFunction, detectedComponentType, templateObject, changeTrigger);
 
 
-						fileWriter.debugWriteFile(componentName, enhancedAnalysisResult);
+							fileWriter.debugWriteFile(componentName, enhancedAnalysisResult);
 
-						//trigger function of the writing of the component fileWriter
-						// transform extracted information in a structure, so it can be copied without further transformation
-						fileWriter.writeComponentFile(
-							componentName,
-							detectedComponentType,
-							informationExtraction.postProcessProperties(foundProperties),
-							attributeChangedFunction,
-							generatedCreationFunction,
-							visualFile,
-							templateObject,
-							javaScriptFilePath,
-							polymerPath,
-							frameworkPaths,
-							frameworkStylePath
-						);
+							//trigger function of the writing of the component fileWriter
+							// transform extracted information in a structure, so it can be copied without further transformation
+							fileWriter.writeComponentFile(
+								componentName,
+								detectedComponentType,
+								informationExtraction.postProcessProperties(foundProperties),
+								attributeChangedFunction,
+								generatedCreationFunction,
+								visualFile,
+								templateObject,
+								javaScriptFilePath,
+								polymerPath,
+								frameworkPaths,
+								frameworkStylePath
+							);
+						});
 					});
 				});
 			});

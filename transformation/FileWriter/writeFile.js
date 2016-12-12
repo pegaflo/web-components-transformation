@@ -26,7 +26,7 @@ module.exports = {
 				});
 
 				stream.write("\t<script>\n");
-					if(detectedComponentType == "jquery") {
+					if(detectedComponentType == "jquery-ui") {
 						stream.write("\t\tjQuery.noConflict();\n");
 						stream.write("\t\t(function($) {\n");
 						stream.write("\t\t\t$(function()  {\n");

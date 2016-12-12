@@ -72,7 +72,7 @@
 		<input id="colorpick" />
 	</jquery-colorpicker>
 
-	<jquery-tagger availableTags="peopleData;" no-suggest-text="Nichts zu sehen" displayHierarchy="false" indentMultiplier="2" fieldWidth="null">
+	<jquery-tagger baseURL="./components/jquery-tagger-master/img/" availableTags="peopleData;" no-suggest-text="Nichts zu sehen" displayHierarchy="false" indentMultiplier="2" fieldWidth="null">
 		<select id="start"></select>
 	</jquery-tagger>
 
@@ -98,6 +98,9 @@
 		        <li>Item 1</li>
 		        <li>Item 2</li>
 		        <li>Item 3</li>
+				<li>Test</li>
+				<li>Test1</li>
+				<li>Test2</li>
 		    </ul>
 		    <ul></ul>
 		</div>
@@ -123,61 +126,6 @@
 			</p>
 			<hr />
 			<h1>Important Employees</h1>
-				<table id="one">
-					<thead class="test">
-						<tr>
-							<th>ID</th>
-							<th>first name</th>
-							<th>last name</th>
-							<th>phone number</th>
-							<th>team color</th>
-							<th>salary</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>10234</td>
-							<td>John</td>
-							<td>Smith</td>
-							<td>555-555-5555</td>
-							<td>orange</td>
-							<td>$2.00</td>
-						</tr>
-						<tr>
-							<td>102288</td>
-							<td>Jane</td>
-							<td>Smith</td>
-							<td>555-445-5555</td>
-							<td>purplue</td>
-							<td>$1000.00</td>
-						</tr>
-						<tr>
-							<td>11534</td>
-							<td>Ben</td>
-							<td>Dover</td>
-							<td>555-443-5555</td>
-							<td>pink</td>
-							<td>$200.00</td>
-						</tr>
-						<tr>
-							<td>2153</td>
-							<td>Goldy</td>
-							<td>Dilgger</td>
-							<td>555-555-2562</td>
-							<td>blue</td>
-							<td>$200.40</td>
-						</tr>
-						<tr>
-							<td>1</td>
-							<td>Steve</td>
-							<td>Southwest</td>
-							<td>554-555-3562</td>
-							<td>orange</td>
-							<td>$710.40</td>
-						</tr>
-					</tbody>
-				</table>
-			<hr />
 
 			<p>
 				Lorem ipsum omnium omnesque persecuti pri eu, ex eos albucius apeirian dignissim. Ei ludus veniam sit, mel fugit vulputate no. Ad sonet delenit tibique sea. Has voluptua cotidieque referrentur in, vim no mandamus theophrastus.
@@ -206,7 +154,7 @@
 		</div>
 	</jquery-acescroll>
 
-	<jquery-carousel>
+	<jquery-carousel data-role="carousel">
 		<ul data-role="carousel" id="carousel">
 		   <li><img alt="" src="img/1.jpg"/></li>
 		   <li><img alt="" src="img/2.jpg"/></li>
@@ -227,8 +175,6 @@
 -->
 
 	<script>
-		var acc = [ [ 'Example category', [ 'Item 1', 'Item 2', 'Another Item' ] ], [ '2nd Category', [ 'item1', 'item2', 'item3' ] ] ];
-
 		var peopleData =
 		{ "item0":
 		  {
@@ -256,9 +202,12 @@
 		var labels = ['ATT', 'DEF', 'SPD', 'ENE', 'MEN'];  // labels that will be displayed
 		var data = [90, 74, 73, 64, 66];
 
+		var acc = [ [ 'Example category', [ 'Item 1', 'Item 2', 'Another Item' ] ], [ '2nd Category', [ 'item1', 'item2', 'item3' ] ], [ '3nd Category', [ 'item1', 'item2', 'item3' ] ] ];
+		document.getElementsByTagName("jquery-item-selector")[0].items = acc;
+
 		document.getElementsByTagName("jquery-tagger")[0].availableTags = peopleData;
 
-		document.getElementsByTagName("jquery-item-selector")[0].items = acc;
+		//document.getElementsByTagName("jquery-item-selector")[0].items = acc;
 		document.getElementsByTagName("jquery-item-selector")[0].callback = function(element, id) {
 						//$('#msg').html('Currently selected item : ' + acc[id[0]][0] + ', ' + acc[id[0]][1][id[1]]);
 						console.log('Currently selected item : ' + acc[id[0]][0] + ', ' + acc[id[0]][1][id[1]]);

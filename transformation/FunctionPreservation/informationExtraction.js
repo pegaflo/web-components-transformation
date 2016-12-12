@@ -15,8 +15,8 @@ module.exports = {
 		return synchronise.createAttributeChangedFunction(properties, functions, creationFunction, detectedComponentType);
 	},
 
-	generateCreationFunction: function(properties, functions, creationFunction, detectedComponentType, templateObject) {
-		return synchronise.generateCreationFunction(properties, functions, creationFunction, detectedComponentType, templateObject);
+	generateCreationFunction: function(properties, functions, creationFunction, detectedComponentType, templateObject, changeTriggers) {
+		return synchronise.generateCreationFunction(properties, functions, creationFunction, detectedComponentType, templateObject, changeTriggers);
 	},
 
 	getCreationFunction: function(analysisResult, detectedComponentType) {
@@ -25,5 +25,9 @@ module.exports = {
 
 	postProcessProperties: function(properties) {
 		return extractProperties.postProcess(properties);
+	},
+
+	getChangeTrigger: function(analysisResult, properties, callback) {
+		return synchronise.getAllChangeTrigger(analysisResult, properties, callback);
 	}
 }

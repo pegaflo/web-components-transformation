@@ -28,11 +28,12 @@ module.exports = {
 
 	getFrameworkPaths: function(detectedComponentType, callback) {
 		//callback();
-		if (detectedComponentType == 'jquery') {
+		if (detectedComponentType == 'jquery-ui') {
 			let foundPaths = [];
 			dir.paths(__dirname + "/../../", true, function(err, paths) {
 				if (err) throw err;
 				paths.forEach(function(path) {
+					//TODO: find a better way to find jquery-path
 					if (path.endsWith("/jquery/dist/jquery.js")) {
 						foundPaths.push(module.exports.processFilePath(path));
 					}
@@ -54,7 +55,7 @@ module.exports = {
 	* returns the path to the style file
 	*/
 	getFrameworkStylePaths: function(detectedComponentType, callback) {
-		if (detectedComponentType == 'jquery') {
+		if (detectedComponentType == 'jquery-ui') {
 			let foundPaths = [];
 			dir.paths(__dirname + "/../../", true, function(err, paths) {
 				if (err) throw err;

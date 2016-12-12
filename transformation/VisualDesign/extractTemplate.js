@@ -9,7 +9,7 @@ module.exports = {
 		templateDefinition = "\t<template>\n";
 
 		// there is no template defined in jquery component files, so we import the nodes, that are given in the new component tag
-		if(detectedComponentType == "jquery") {
+		if(detectedComponentType == "jquery-ui") {
 			// define an entry point, where the node will be imported
 			templateDefinition += "\t\t<div id='entry'></div>\n";
 

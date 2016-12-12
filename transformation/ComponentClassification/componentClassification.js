@@ -40,7 +40,7 @@ module.exports = {
 				data.keywords.indexOf("jqueryui") !== -1 ||
 				data.keywords.indexOf("jquery-ui") !== -1 ||
 				(data.dependencies !== undefined && data.dependencies.jquery !== undefined)) {
-				detectedComponentType = "jquery"
+				detectedComponentType = "jquery-ui"
 			} else if(data.keywords.indexOf("react") !== -1 ||
 					(data.dependencies !== undefined && ata.dependencies.react !== undefined)) {
 				detectedComponentType = "react";
@@ -51,7 +51,7 @@ module.exports = {
 
 	analyzeFilesForCreationFunction: function(analysisResult, callback) {
 		let extractedMemberExpressionProperties = [];
-		let jQueryFound = false;
+		let jQueryUIFound = false;
 
 		estraverse.traverse(analysisResult, {
 			enter: function(node, parent) {
@@ -64,11 +64,11 @@ module.exports = {
 
 		extractedMemberExpressionProperties.forEach(function(value) {
 			if(value.name === "widget") {
-				jQueryFound = true;
+				jQueryUIFound = true;
 			}
 		});
-		if(jQueryFound) {
-			detectedComponentType = "jquery";
+		if(jQueryUIFound) {
+			detectedComponentType = "jquery-ui";
 		} else {
 			detectedComponentType = "n/a";
 		}
