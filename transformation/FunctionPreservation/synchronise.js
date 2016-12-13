@@ -7,15 +7,13 @@ module.exports = {
 		attrFunction = "\t\t\t\t\tattributeChanged: function(attribute, oldValue, newValue) {\n";
 
 		properties.forEach(function(prop) {
-			//console.log(prop);
-
 			attrFunction += "\t\t\t\t\t\tif(attribute === '" + prop.name + "') {\n";
 			attrFunction += "\t\t\t\t\t\t\tthis." + prop.name + " = newValue;\n";
 			attrFunction += "\t\t\t\t\t\t}\n";
 		});
 
 		//create a new instance of the component with the updated values
-		if (detectedComponentType === "jquery-ui") {
+		if (detectedComponentType === "jquery-ui" || detectedComponentType === "jquery") {
 			attrFunction += "\t\t\t\t\t\telement." + creationFunction + "({\n";
 			properties.forEach(function(value, idx, array) {
 				attrFunction += "\t\t\t\t\t\t\t" + value.name + ": this." + value.name;
@@ -29,6 +27,7 @@ module.exports = {
 
 		attrFunction += "\t\t\t\t\t}\n";
 
+		console.log("Function to react to Attribute Change created");
 		return attrFunction;
 	},
 
@@ -43,7 +42,7 @@ module.exports = {
 		let generatedCreationFunction;
 		generatedCreationFunction = "\t\t\t\t\tready: function() {\n";
 
-		if(detectedComponentType == "jquery-ui") {
+		if(detectedComponentType == "jquery-ui" || detectedComponentType === "jquery") {
 			generatedCreationFunction += templateObject[0].importNode;
 			generatedCreationFunction += "\t\t\t\t\t\telement = $('#' + nodeId);\n";
 			generatedCreationFunction += "\t\t\t\t\t\tlet that = this;\n"
@@ -60,7 +59,7 @@ module.exports = {
 					generatedCreationFunction +="\t\t\t\t\t\t})";
 				}
 
-				generatedCreationFunction += ".on('" + value.trigger + "', function(event, attr) {console.log(event);console.log(attr);\n";
+				generatedCreationFunction += ".on('" + value.trigger + "', function(event, attr) {\n";
 				generatedCreationFunction += "\t\t\t\t\t\t\tthat." + value.property + " = attr;\n";
 
 				if (idx !== array.length - 1){
@@ -71,6 +70,7 @@ module.exports = {
 			generatedCreationFunction += "\t\t\t\t\t\t});\n";
 		}
 		generatedCreationFunction += "\t\t\t\t\t},\n";
+		console.log("Function to instantiate Component created");
 		return generatedCreationFunction;
 
 	},
@@ -95,6 +95,7 @@ module.exports = {
 				}
 			}
 		});
+		console.log("All change-Triggers of the component extracted");
 		callback(foundTriggers);
 	}
 

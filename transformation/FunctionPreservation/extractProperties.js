@@ -15,10 +15,20 @@ module.exports = {
 							foundProperties = node.value.properties;
 						}
 					}
+				} else if (detectedComponentType === "jquery") {
+					//TODO: robust extraction of the properties, hard, because data are always different saved
+					if(node.type === "ObjectExpression" && parent.left !== undefined) {
+						if (parent.operator === "=" && parent.left.property !== undefined && parent.left.property.name === "defaults") {
+							if (node.properties !== undefined) {
+								foundProperties = node.properties;
+							}
+						}
+					} else {
+						foundProperties = [];
+					}
 				}
 			}
 		});
-
 		foundProperties.forEach(function(propertyObject) {
 			prop.push({
 				"name": propertyObject.key.name,
@@ -27,6 +37,7 @@ module.exports = {
 			});
 		});
 
+		console.log("Properties, default Values and DataType of the component extracted");
 		return prop;
 	},
 

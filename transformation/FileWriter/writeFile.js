@@ -26,35 +26,29 @@ module.exports = {
 				});
 
 				stream.write("\t<script>\n");
-					if(detectedComponentType == "jquery-ui") {
+					// the definition of the polymer component
+					if (detectedComponentType === "jquery-ui" || detectedComponentType === "jquery") {
 						stream.write("\t\tjQuery.noConflict();\n");
 						stream.write("\t\t(function($) {\n");
 						stream.write("\t\t\t$(function()  {\n");
 						stream.write("\t\t\t\tlet element;\n");
-						stream.write("\t\t\t\tPolymer({\n");
 
+						stream.write("\t\t\t\tPolymer({\n");
 						stream.write("\t\t\t\t\tis: '" +  componentName + "',\n");
 						stream.write(properties);
-
 						stream.write(creationFunction);
 						stream.write(attributeChangedFunction);
-
 						stream.write("\t\t\t\t});\n");
+
 						stream.write("\t\t\t});\n");
 						stream.write("\t\t})(jQuery)\n");
 					}
 
 				stream.write("\t</script>\n");
 			stream.write("</dom-module>");
-
-			//stream.write(detectedComponentType + '\n');
-			//stream.write(properties + '\n');
-			//stream.write(attributeChangedFunction + '\n');
-			//stream.write(creationFunction + '\n');
-			//stream.write(visualFile + '\n');
-			//stream.write(template + '\n');
 		  stream.end();
 		})
+		console.log("Component File with the definition of the Web Component is written");
 	},
 
 	writeVisualFile: function(componentName, paths,  filename) {
@@ -65,7 +59,7 @@ module.exports = {
 			});
 		  stream.end();
 		})
-		//console.log("Style File is written!");
+		console.log("Style File is written to the output folder");
 
 		return "./" + componentName + "." + filename;
 	},
@@ -78,9 +72,11 @@ module.exports = {
 		});
 	},
 
-	createComponentFolder: function(componentName) {
+	createComponentFolder: function(componentName, callback) {
 		mkdirp('./dist/' + componentName, function (err) {
     		if (err) console.error(err);
+			console.log("New Folder in ./dist/ for the Component created");
+			callback();
 		});
 	}
 };

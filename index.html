@@ -65,9 +65,45 @@
 	<link rel="import" href="./dist/jquery-item-l2l/jquery-item-l2l.html">
 	<link rel="import" href="./dist/jquery-acescroll/jquery-acescroll.html">
 	<link rel="import" href="./dist/jquery-carousel/jquery-carousel.html">
+	<link rel="import" href="./dist/jquery-timepicker/jquery-timepicker.html">
+	<link rel="import" href="./dist/jquery-lightgallery/jquery-lightgallery.html">
+	<link rel="import" href="./dist/jquery-selectize/jquery-selectize.html">
+	<link rel="import" href="./dist/jquery-datetime/jquery-datetime.html">
+	<link rel="import" href="./dist/jquery-tagging/jquery-tagging.html">
 
 </head>
 <body>
+
+	<jquery-tagging>
+		<div data-tags-input-name="tag" id="tagBox">
+			<div>test</div>
+			<div>t22t</div>
+		</div>
+	</jquery-tagging>
+
+	<jquery-datetime>
+		<input type="text" value="" id="datetimepicker"/>
+	</jquery-datetime>
+
+	<jquery-selectize>
+		<input type="text" id="selectize">
+	</jquery-selectize>
+
+	<jquery-lightgallery>
+		<div id="lightgallery">
+		  <a href="img/1.jpg">
+		      <img src="img/thumb-1.jpg" />
+		  </a>
+		  <a href="img/2.jpg">
+		      <img src="img/thumb-2.jpg" />
+		  </a>
+		</div>
+	</jquery-lightgallery>
+
+	<jquery-timepicker>
+		<input value="5:00pm" class="ui-timepicker-input" id="picktime" type="text">
+	</jquery-timepicker>
+
 	<jquery-colorpicker>
 		<input id="colorpick" />
 	</jquery-colorpicker>
@@ -153,15 +189,6 @@
 			</div>
 		</div>
 	</jquery-acescroll>
-
-	<jquery-carousel data-role="carousel">
-		<ul data-role="carousel" id="carousel">
-		   <li><img alt="" src="img/1.jpg"/></li>
-		   <li><img alt="" src="img/2.jpg"/></li>
-		   <li><img alt="" src="img/4.jpg"/></li>
-		 </ul>
-	</jquery-carousel>
-
 
 
 	<!--<jquery-timepicker></jquery-timepicker>
