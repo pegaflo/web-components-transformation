@@ -6,11 +6,11 @@ module.exports = {
 		let attrFunction;
 		attrFunction = "\t\t\t\t\tattributeChanged: function(attribute, oldValue, newValue) {\n";
 
-		properties.forEach(function(prop) {
+		/*properties.forEach(function(prop) {
 			attrFunction += "\t\t\t\t\t\tif(attribute === '" + prop.name + "') {\n";
 			attrFunction += "\t\t\t\t\t\t\tthis." + prop.name + " = newValue;\n";
 			attrFunction += "\t\t\t\t\t\t}\n";
-		});
+		});*/
 
 		//create a new instance of the component with the updated values
 		if (detectedComponentType === "jquery-ui" || detectedComponentType === "jquery") {
@@ -44,7 +44,7 @@ module.exports = {
 
 		if(detectedComponentType == "jquery-ui" || detectedComponentType === "jquery") {
 			generatedCreationFunction += templateObject[0].importNode;
-			generatedCreationFunction += "\t\t\t\t\t\telement = $('#' + nodeId);\n";
+			generatedCreationFunction += "\t\t\t\t\t\telement = $(this.$.entry.children);\n";
 			generatedCreationFunction += "\t\t\t\t\t\tlet that = this;\n"
 			generatedCreationFunction += "\t\t\t\t\t\telement." + creationFunction + "({\n";
 			properties.forEach(function(value, idx, array) {
@@ -88,7 +88,9 @@ module.exports = {
 						parent.arguments.forEach(function(data) {
 							if(data.value !== undefined && data.value.indexOf("change") !== -1) {
 								let foundProperty = data.value.split(".")[1];
-								foundTriggers.push({"trigger": data.value, "property": foundProperty});
+								if (foundProperty !== undefined) {
+									foundTriggers.push({"trigger": data.value, "property": foundProperty});
+								}
 							}
 						})
 					}

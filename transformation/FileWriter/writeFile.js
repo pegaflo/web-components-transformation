@@ -1,5 +1,4 @@
 let fs = require("fs");
-let util = require('util');
 let mkdirp = require('mkdirp');
 
 let componentPreparation = require('../ComponentPreparation/componentPreparation.js');
@@ -8,16 +7,16 @@ module.exports = {
 	writeComponentFile: function(componentName, detectedComponentType, properties, attributeChangedFunction, creationFunction, visualFile, template, componentMainFile, polymerPath, frameworkPaths, frameworkStylePath) {
 		var stream = fs.createWriteStream("./dist/" + componentName + "/" + componentName + ".html");
 		stream.once('open', function(fd) {
-			stream.write("<link rel='import' href='" + polymerPath + "'>\n");
+			stream.write("<link rel='import' href='./" + polymerPath + "'>\n");
 			stream.write("<link rel='import' href='" + visualFile + "'>\n");
 			frameworkStylePath.forEach(function(stylePath) {
-				stream.write("<link rel='stylesheet' href='" + stylePath + "'>\n");
+				stream.write("<link rel='stylesheet' href='./" + stylePath + "'>\n");
 			});
 			frameworkPaths.forEach(function(path) {
-				stream.write("<script src='" + path + "'></script>\n");
+				stream.write("<script src='./" + path + "'></script>\n");
 			});
 
-			stream.write("<script src='" + componentMainFile + "'></script>\n\n");
+			stream.write("<script src='./" + componentMainFile + "'></script>\n\n");
 
 			stream.write("<dom-module id='" + componentName + "'>\n");
 				//stream.write(template[0].template);

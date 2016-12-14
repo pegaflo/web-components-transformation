@@ -21,15 +21,15 @@ componentPreparation.getComponentsFilePaths(componentPath, function(filePaths) {
 		let foundFile = componentPreparation.findJavaScriptFile(filePaths, componentMainFile);
 		let enhancedAnalysisResult;
 
-		componentPreparation.getPolymerFilePath(function(polymerPath) {
-			//this transformation implementation can only find one component file and transform it
+		componentPreparation.getPolymerFilePath(componentName, function(polymerPath) {
+			console.log(polymerPath);
 			componentPreparation.parseJavaScriptFile(foundFile[0], function(analysisResult) {
 				componentClassification.analyzeComponentType(filePaths, analysisResult, function(detectedComponentType) {
 					fileWriter.debugWriteFile(componentName, analysisResult);
 
 					let javaScriptFilePath = componentPreparation.processJavaScriptFile(foundFile[0]);
-					componentPreparation.getFrameworkPaths(detectedComponentType, function(frameworkPaths) {
-						componentPreparation.getFrameworkStylePaths(detectedComponentType, function(frameworkStylePath) {
+					componentPreparation.getFrameworkPaths(detectedComponentType, componentName, function(frameworkPaths) {
+						componentPreparation.getFrameworkStylePaths(detectedComponentType, componentName, function(frameworkStylePath) {
 							enhancedAnalysisResult = hoist(analysisResult);
 
 							let extractedFunctions = informationExtraction.getFunctions(enhancedAnalysisResult);
@@ -43,8 +43,6 @@ componentPreparation.getComponentsFilePaths(componentPath, function(filePaths) {
 								let attributeChangedFunction = informationExtraction.generateAttributeChangedFunction(foundProperties, extractedFunctions, detectedCreationFunction, detectedComponentType);
 								let generatedCreationFunction = informationExtraction.generateCreationFunction(foundProperties, extractedFunctions, detectedCreationFunction, detectedComponentType, templateObject, changeTrigger);
 
-								//trigger function of the writing of the component fileWriter
-								// transform extracted information in a structure, so it can be copied without further transformation
 								fileWriter.writeComponentFile(
 									componentName,
 									detectedComponentType,

@@ -9,42 +9,24 @@
     "lint": "./node_modules/.bin/eslint .",
     "transformation": "node transformation/transformation.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/vasanthk/react-es6-webpack-boilerplate.git"
-  },
   "keywords": [
     "react",
     "es6",
     "babel",
     "webpack"
   ],
-  "author": "Vasanth Krishnamoorthy (http://www.vasanthk.com)",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/vasanthk/react-es6-webpack-boilerplate/issues"
-  },
-  "homepage": "https://github.com/vasanthk/react-es6-webpack-boilerplate",
   "dependencies": {
-    "app-root-dir": "^1.0.2",
-    "ast-hoist": "^3.1.0",
-    "ast-redeclare": "^1.0.4",
-    "ast-types": "^0.9.2",
-    "babel-runtime": "^6.3.19",
-    "check-type": "^0.4.11",
-    "escope": "^3.6.0",
-    "esprima": "^3.1.2",
-    "esprima-ast-utils": "0.0.6",
-    "estraverse": "^4.2.0",
+    "app-root-dir": "1.0.2",
+    "copy": "^0.3.0",
+    "esprima": "3.1.2",
+    "estraverse": "4.2.0",
     "function-extractor": "0.0.5",
     "hoister": "0.0.2",
-    "minimist": "^1.2.0",
-    "mkdirp": "^0.5.1",
-    "node-dir": "^0.1.16",
-    "node-libs-browser": "^2.0.0",
-    "read-package-json": "^2.0.4",
-    "url": "^0.11.0",
-    "write": "^0.3.2"
+    "minimist": "1.2.0",
+    "mkdirp": "0.5.1",
+    "node-dir": "0.1.16",
+    "read-package-json": "2.0.4"
   },
   "devDependencies": {
     "babel-core": "^6.3.21",

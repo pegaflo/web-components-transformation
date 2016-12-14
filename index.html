@@ -6,7 +6,7 @@
     <script>
       // Setup Polymer options
       window.Polymer = {
-        // dom: 'shadow',
+        //dom: 'shadow',
         lazyRegister: true
       };
 
@@ -58,7 +58,8 @@
 	</style>
 
     <link rel="import" href="./dist/jquery-colorpicker/jquery-colorpicker.html">
-	<link rel="import" href="./dist/jquery-month-selector/jquery-month-selector.html">
+	<link rel="import" href="./dist/jquery-timepicker/jquery-timepicker.html">
+	<!--<link rel="import" href="./dist/jquery-month-selector/jquery-month-selector.html">
 	<link rel="import" href="./dist/jquery-tagger/jquery-tagger.html">
 	<link rel="import" href="./dist/jquery-polygonal-graph/jquery-polygonal-graph.html">
 	<link rel="import" href="./dist/jquery-item-selector/jquery-item-selector.html">
@@ -70,9 +71,31 @@
 	<link rel="import" href="./dist/jquery-selectize/jquery-selectize.html">
 	<link rel="import" href="./dist/jquery-datetime/jquery-datetime.html">
 	<link rel="import" href="./dist/jquery-tagging/jquery-tagging.html">
+	<link rel="import" href="./dist/jquery-mask/jquery-mask.html">
+	<link rel="import" href="./dist/jquery-range-slider/jquery-range-slider.html">
+	<link rel="import" href="./dist/jquery-tele/jquery-tele.html">
+	<link rel="import" href="./dist/jquery-marcopolo/jquery-marcopolo.html">
+	<link rel="import" href="./dist/jquery-locationpicker/jquery-locationpicker.html">-->
+
 
 </head>
 <body>
+
+	<!--<jquery-marcopolo>
+		<input type="text" name="userSearch" id="userSearch">
+	</jquery-marcopolo>
+
+	<jquery-tele>
+		<input id="tele"></input>
+	</jquery-tele>
+
+	<jquery-range-slider min="-100" max="100" step="10" from="550">
+		<input id="range"></input>
+	</jquery-range-slider>
+
+	<jquery-mask>
+		<input id="mask"></input>
+	</jquery-mask>
 
 	<jquery-tagging>
 		<div data-tags-input-name="tag" id="tagBox">
@@ -98,21 +121,29 @@
 		      <img src="img/thumb-2.jpg" />
 		  </a>
 		</div>
-	</jquery-lightgallery>
+	</jquery-lightgallery>-->
 
 	<jquery-timepicker>
 		<input value="5:00pm" class="ui-timepicker-input" id="picktime" type="text">
 	</jquery-timepicker>
 
+	<jquery-timepicker>
+		<input value="11:00pm" class="ui-timepicker-input" id="test2" type="text">
+	</jquery-timepicker>
+
 	<jquery-colorpicker>
-		<input id="colorpick" />
+		<input id="dfgf" />
 	</jquery-colorpicker>
 
+	<jquery-colorpicker>
+		<input id="colorpick2" />
+	</jquery-colorpicker>
+<!--
 	<jquery-tagger baseURL="./components/jquery-tagger-master/img/" availableTags="peopleData;" no-suggest-text="Nichts zu sehen" displayHierarchy="false" indentMultiplier="2" fieldWidth="null">
 		<select id="start"></select>
 	</jquery-tagger>
 
-
+-->
 	<!--<jquery-month-selector end="new Date();">
 		<div id="selector"></div>
 	</jquery-month-selector>
@@ -123,7 +154,7 @@
 	</jquery-polygonal-graph>
 -->
 
-	<jquery-item-selector items>
+	<!--<jquery-item-selector items>
 		<div id="items"></div>
 	</jquery-item-selector>
 
@@ -189,6 +220,7 @@
 			</div>
 		</div>
 	</jquery-acescroll>
+-->
 
 
 	<!--<jquery-timepicker></jquery-timepicker>
@@ -201,7 +233,7 @@
 	</jquery-lightgallery>
 -->
 
-	<script>
+	<!--<script>
 		var peopleData =
 		{ "item0":
 		  {
@@ -243,6 +275,6 @@
 		document.getElementsByTagName("jquery-polygonal-graph")[0].labels = labels;
 		document.getElementsByTagName("jquery-polygonal-graph")[0].data = data;
 		document.getElementsByTagName("jquery-polygonal-graph")[0].grid = true;
-	</script>
+	</script>-->
 </body>
 </html>

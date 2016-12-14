@@ -14,7 +14,7 @@ module.exports = {
 			}
 		});
 
-		if(package_json_found === true) {
+		if(package_json_found !== true) {
 			detectedComponentType = module.exports.analyzePackageJSON(path_to_package_json, function(componentType) {
 				callback(componentType);
 			});
@@ -33,17 +33,23 @@ module.exports = {
 			//check if one of the supported Frameworks is written in this package.json
 			// is written in the keywords or the dependencies, search for a string
 			if ((data.keywords !== undefined && data.keywords.indexOf("jquery") !== -1) || (data.dependencies !== undefined && data.dependencies.jquery !== undefined)) {
-				if (data.keywords.indexOf("jqueryui") !== -1 || data.keywords.indexOf("jquery-ui") !== -1 ) {
-					detectedComponentType = "jquery-ui"
+				if (data.keywords.indexOf("jqueryui") === -1 || data.keywords.indexOf("jquery-ui") === -1 || data.dependencies["jquery-ui"] === undefined) {
+					detectedComponentType = "jquery"
 				} else {
-					detectedComponentType = "jquery";
+					// when there is no jquery-ui in the package,json, then it is not ensured that there is no jquery-ui library somewhere in the component folder
+					// so to be sure, analyze also the Component File
+					module.exports.analyzeFilesForCreationFunction(analysisResult, function(type) {
+						detectedComponentType = type;
+					});
 				}
 			} else if ((data.keywords !== undefined && data.keywords.indexOf("react") !== -1) ||
 					(data.dependencies !== undefined && ata.dependencies.react !== undefined)) {
 				detectedComponentType = "react";
 			} else {
-				//TODO: what if there is no keywords or dependencies in the package.json (maybe search for xxx.jquery.json and search there ), for now default is jquery
-				detectedComponentType = "jquery";
+				// if there are no information about the used framework in the package.json, then analyze the javascript-File
+				module.exports.analyzeFilesForCreationFunction(analysisResult, function(type) {
+					detectedComponentType = type;
+				});
 			}
 			console.log("Component Type is detected from package.json. Detected Component Type: " + detectedComponentType);
 			callback(detectedComponentType);

@@ -24,12 +24,14 @@ module.exports = {
 				if (detectedComponentType === "jquery-ui") {
 					if (node.type === "MemberExpression" && node.property.name === "widget" && node.object.name === "$") {
 							creationFunctionName = parent.arguments[0].value.split(".")[1]
+							//console.log(creationFunctionName);
 					}
 				} else if (detectedComponentType === "jquery") {
 					if (node.type === "Identifier") {
 						if (parent.object !== undefined  && parent.object.property !== undefined && parent.object.object !== undefined) {
 							if (parent.object.object.name === "$" && parent.object.property.name === "fn") {
 								creationFunctionName = node.name;
+								//console.log(node);
 							}
 						}
 					}

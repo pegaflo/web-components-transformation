@@ -3,8 +3,7 @@ let estraverse = require("estraverse");
 module.exports = {
 
 	extractProperties: function(analysisResult, detectedComponentType) {
-		let foundProperties;
-		let prop = [];
+		let processedProperties = [];
 
 		estraverse.traverse(analysisResult, {
 			enter: function(node, parent) {
@@ -12,23 +11,34 @@ module.exports = {
 					if(node.type === "Property" && node.key.name === "options") {
 						//console.log(node.key.name);
 						if(node.value.properties !== undefined) {
-							foundProperties = node.value.properties;
+							processedProperties =  module.exports.processProperties(node.value.properties, detectedComponentType);
 						}
 					}
 				} else if (detectedComponentType === "jquery") {
-					//TODO: robust extraction of the properties, hard, because data are always different saved
 					if(node.type === "ObjectExpression" && parent.left !== undefined) {
 						if (parent.operator === "=" && parent.left.property !== undefined && parent.left.property.name === "defaults") {
 							if (node.properties !== undefined) {
-								foundProperties = node.properties;
+
+								processedProperties =  module.exports.processProperties(node.properties, detectedComponentType);
 							}
 						}
-					} else {
-						foundProperties = [];
+					} else if (node.type === "VariableDeclarator") {
+						if (node.id !== undefined && node.id.name === "defaults") {
+							if (node.init !== null) {
+								processedProperties =  module.exports.processProperties(node.init.properties, detectedComponentType);
+							}
+						}
 					}
 				}
 			}
 		});
+
+		return processedProperties;
+		//return module.exports.processProperties(foundProperties, detectedComponentType);
+	},
+
+	processProperties: function(foundProperties, detectedComponentType) {
+		let prop = [];
 		foundProperties.forEach(function(propertyObject) {
 			prop.push({
 				"name": propertyObject.key.name,
@@ -36,8 +46,6 @@ module.exports = {
 				"dataType": module.exports.getDataType(module.exports.getDefaultValue(propertyObject, detectedComponentType), detectedComponentType)
 			});
 		});
-
-		console.log("Properties, default Values and DataType of the component extracted");
 		return prop;
 	},
 
