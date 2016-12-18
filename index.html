@@ -59,6 +59,7 @@
 
     <link rel="import" href="./dist/jquery-colorpicker/jquery-colorpicker.html">
 	<link rel="import" href="./dist/jquery-timepicker/jquery-timepicker.html">
+	<link rel="import" href="./dist/jquery-item-l2l/jquery-item-l2l.html">
 	<!--<link rel="import" href="./dist/jquery-month-selector/jquery-month-selector.html">
 	<link rel="import" href="./dist/jquery-tagger/jquery-tagger.html">
 	<link rel="import" href="./dist/jquery-polygonal-graph/jquery-polygonal-graph.html">
@@ -127,7 +128,7 @@
 		<input value="5:00pm" class="ui-timepicker-input" id="picktime" type="text">
 	</jquery-timepicker>
 
-	<jquery-timepicker>
+	<jquery-timepicker orientation="rb" time-format="H:i" min-time="12:00" show-duration="true" step="45">
 		<input value="11:00pm" class="ui-timepicker-input" id="test2" type="text">
 	</jquery-timepicker>
 
@@ -138,6 +139,32 @@
 	<jquery-colorpicker>
 		<input id="colorpick2" />
 	</jquery-colorpicker>
+
+	<jquery-item-l2l>
+		<div id="my-lists">
+		    <ul>
+		        <li>Item 1</li>
+		        <li>Item 2</li>
+		        <li>Item 3</li>
+				<li>Test</li>
+				<li>Test1</li>
+				<li>Test2</li>
+		    </ul>
+		    <ul></ul>
+		</div>
+	</jquery-item-l2l>
+
+
+	<jquery-item-l2l>
+		<div id="my-lists">
+		    <ul>
+		        <li>Item 1</li>
+		        <li>Item 2</li>
+		        <li>Item 3</li>
+		    </ul>
+		    <ul></ul>
+		</div>
+	</jquery-item-l2l>
 <!--
 	<jquery-tagger baseURL="./components/jquery-tagger-master/img/" availableTags="peopleData;" no-suggest-text="Nichts zu sehen" displayHierarchy="false" indentMultiplier="2" fieldWidth="null">
 		<select id="start"></select>

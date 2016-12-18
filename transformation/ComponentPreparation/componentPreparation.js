@@ -22,11 +22,9 @@ module.exports = {
 			let polymerPaths = [];
 			if (err) throw err;
 			paths.forEach(function(path) {
-				if(path.endsWith("polymer.html")) {
+				if(path.endsWith("polymer.html") && path.indexOf("dist") === -1) {
 					console.log("Relative Path to the Polymer library determined");
-					if(path.indexOf("dist") === -1) {
-						polymerPaths.push(path);
-					}
+					polymerPaths.push(path);
 				}
 			});
 
@@ -41,14 +39,14 @@ module.exports = {
 				if (err) throw err;
 				let jQueryPath = [];
 				paths.forEach(function(path) {
-					if (path.endsWith("/jquery.js")) {
+					if (path.endsWith("/jquery.js") && path.indexOf("dist") === -1) {
 						jQueryPath.push(path);
 					}
 				});
 				foundPaths.push(module.exports.processFilePath(jQueryPath[0], componentName));
 				if(detectedComponentType === 'jquery-ui') {
 					paths.forEach(function(path) {
-						if (path.endsWith("/jquery-ui.js")) {
+						if (path.endsWith("/jquery-ui.js") && path.indexOf("dist") === -1) {
 							foundPaths.push(module.exports.processFilePath(path, componentName));
 						}
 					});
@@ -73,7 +71,7 @@ module.exports = {
 				if (err) throw err;
 				let stylePath = [];
 				paths.forEach(function(path) {
-					if (path.endsWith("jquery-ui.css")) {
+					if (path.endsWith("jquery-ui.css") && path.indexOf("dist") === -1) {
 						stylePath.push(path);
 					}
 				});
@@ -111,7 +109,7 @@ module.exports = {
 			//console.log(files + " copied to the component folder")
 		//});
 
-		return pathLib.relative(rootDirectory + "/dist/component/", path);
+		return pathLib.relative(rootDirectory + "/dist/" + componentName + "/", path);
 		//return pathLib.relative(rootDirectory + "/dist/" + componentName, path);
 	}
 };

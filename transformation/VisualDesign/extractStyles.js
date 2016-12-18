@@ -11,6 +11,8 @@ module.exports = {
 		filepath.forEach(function(path) {
 			if(path.indexOf(".css") !== -1 || path.indexOf(".less") !== -1 ||
 					path.indexOf(".scss") !== -1 || path.indexOf(".style") !== -1) {
+				let string = path.substring(0, path.indexOf(componentName));
+				path = path.replace(string, "./component/").replace(componentName + "/", "");
 				paths.push(path);
 			}
 		});

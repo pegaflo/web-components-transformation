@@ -15,7 +15,6 @@ module.exports = {
 
 			//prepare importNode-Function to copy the template, that is defined while using the component
 			importNodeFunction = "\t\t\t\t\t\tvar templateNodes = Polymer.dom(this).children;\n";
-			importNodeFunction += "\t\t\t\t\t\tvar contentNode;\n";
 			importNodeFunction += "\t\t\t\t\t\tfor(let node of templateNodes) {\n";
 			importNodeFunction += "\t\t\t\t\t\t\tthis.$.entry.appendChild(document.importNode(node, true));\n";
 			importNodeFunction += "\t\t\t\t\t\t}\n";

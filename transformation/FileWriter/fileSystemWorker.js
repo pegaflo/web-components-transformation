@@ -62,7 +62,7 @@ module.exports = {
 		var stream = fs.createWriteStream("./dist/" + componentName + "/" + componentName + "." + filename);
 		stream.once('open', function(fd) {
 			paths.forEach(function(path) {
-				stream.write("<link rel='stylesheet' href='" + componentPreparation.processFilePath(path) + "' />\n");
+				stream.write("<link rel='stylesheet' href='" + path + "' />\n");
 			});
 		  stream.end();
 		})
