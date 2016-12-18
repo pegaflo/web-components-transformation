@@ -2,7 +2,7 @@ let estraverse = require('estraverse');
 
 module.exports = {
 
-	createAttributeChangedFunction: function(properties, functions, creationFunction, detectedComponentType) {
+	generateAttributeChangedFunction: function(properties, functions, creationFunction, detectedComponentType) {
 		let attrFunction;
 		attrFunction = "\t\t\t\t\tattributeChanged: function(attribute, oldValue, newValue) {\n";
 

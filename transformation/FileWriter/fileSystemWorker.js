@@ -1,22 +1,30 @@
 let fs = require("fs");
 let mkdirp = require('mkdirp');
+let copydir = require('copy-dir');
 
 let componentPreparation = require('../ComponentPreparation/componentPreparation.js');
 
 module.exports = {
-	writeComponentFile: function(componentName, detectedComponentType, properties, attributeChangedFunction, creationFunction, visualFile, template, componentMainFile, polymerPath, frameworkPaths, frameworkStylePath) {
+	writeComponentFile: function(componentName, detectedComponentType, properties, attributeChangedFunction, creationFunction, visualFile, template, componentMainFile, frameworkPaths, frameworkStylePath) {
 		var stream = fs.createWriteStream("./dist/" + componentName + "/" + componentName + ".html");
 		stream.once('open', function(fd) {
-			stream.write("<link rel='import' href='./" + polymerPath + "'>\n");
+			stream.write("<link rel='import' href='./polymer/polymer.html'>\n");
 			stream.write("<link rel='import' href='" + visualFile + "'>\n");
+
 			frameworkStylePath.forEach(function(stylePath) {
-				stream.write("<link rel='stylesheet' href='./" + stylePath + "'>\n");
+				if (stylePath.endsWith("jquery-ui.css")) {
+					stream.write("<link rel='stylesheet' href='./framework/jQueryUI/jquery-ui.css'>\n");
+				}
 			});
 			frameworkPaths.forEach(function(path) {
-				stream.write("<script src='./" + path + "'></script>\n");
+				if (path.endsWith("jquery.js")) {
+					stream.write("<script src='./framework/jQuery/jquery.js'></script>\n");
+				} else if (path.endsWith("jquery-ui.js")) {
+					stream.write("<script src='./framework/jQueryUI/jquery-ui.js'></script>\n");
+				}
 			});
 
-			stream.write("<script src='./" + componentMainFile + "'></script>\n\n");
+			stream.write("<script src='./component/" + componentMainFile + "'></script>\n\n");
 
 			stream.write("<dom-module id='" + componentName + "'>\n");
 				//stream.write(template[0].template);
@@ -77,5 +85,35 @@ module.exports = {
 			console.log("New Folder in ./dist/ for the Component created");
 			callback();
 		});
+	},
+
+	copyFolders: function(polymerPath, frameworkPath, componentDirectory, componentName, detectedComponentType) {
+
+		let jQueryFolder;
+		let jQueryUIFolder;
+		let polymerFolder = polymerPath.replace("polymer.html", "").replace("../../", "./");
+
+		copydir.sync(polymerFolder, './dist/' + componentName + '/polymer/');
+
+		frameworkPath.forEach(function (path) {
+			if (detectedComponentType === "jquery") {
+				jQueryFolder = path.replace("../../", "./").replace("jquery.js", "");
+			} else if (detectedComponentType === "jquery-ui") {
+				if (path.indexOf("jquery.js") !== -1) {
+					jQueryFolder = path.replace("../../", "./").replace("jquery.js", "");
+				} else if (path.indexOf("jquery-ui.js") !== -1) {
+					jQueryUIFolder = path.replace("../../", "./").replace("jquery-ui.js", "");
+				}
+			}
+		});
+
+		if (detectedComponentType === "jquery") {
+			copydir.sync(jQueryFolder, './dist/' + componentName + '/framework/jQuery');
+		} else if (detectedComponentType === "jquery-ui") {
+			copydir.sync(jQueryFolder, './dist/' + componentName + '/framework/jQuery');
+			copydir.sync(jQueryUIFolder, './dist/' + componentName + '/framework/jQueryUI');
+		}
+
+		copydir.sync(__dirname + "/../../" + componentDirectory, './dist/' + componentName + '/component/');
 	}
 };

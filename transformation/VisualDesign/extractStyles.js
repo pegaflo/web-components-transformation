@@ -1,5 +1,5 @@
 //import the FileWriter-Module, because of the function to write the styles-file
-var FileWriter = require("../FileWriter/writeFile.js");
+var FileWriter = require("../FileWriter/fileSystemWorker.js");
 var componentPreparation = require("../ComponentPreparation/componentPreparation.js");
 
 //array with all the paths, that are used to design the component

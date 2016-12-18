@@ -43,7 +43,7 @@ module.exports = {
 			prop.push({
 				"name": propertyObject.key.name,
 				"default": module.exports.getDefaultValue(propertyObject, detectedComponentType),
-				"dataType": module.exports.getDataType(module.exports.getDefaultValue(propertyObject, detectedComponentType), detectedComponentType)
+				"dataType": module.exports.getDataType(module.exports.getDefaultValue(propertyObject, detectedComponentType))
 			});
 		});
 		return prop;
@@ -71,7 +71,7 @@ module.exports = {
 
 	},
 
-	getDataType: function(value, detectedComponentType) {
+	getDataType: function(value) {
 		if(value instanceof Array) {
 			return "Array";
 		} else if( value instanceof Date) {

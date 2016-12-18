@@ -19,13 +19,18 @@ module.exports = {
 
 	getPolymerFilePath: function(componentName, callback) {
 		dir.paths(__dirname + "/../../", true, function(err, paths) {
+			let polymerPaths = [];
 			if (err) throw err;
 			paths.forEach(function(path) {
 				if(path.endsWith("polymer.html")) {
 					console.log("Relative Path to the Polymer library determined");
-					callback(module.exports.processFilePath(path, componentName));
+					if(path.indexOf("dist") === -1) {
+						polymerPaths.push(path);
+					}
 				}
 			});
+
+			callback(module.exports.processFilePath(polymerPaths[0], componentName));
 		})
 	},
 
@@ -82,6 +87,7 @@ module.exports = {
 	},
 
 	parseJavaScriptFile: function(path, callback) {
+		console.log(path);
 		fs.readFile(path, 'utf8', function (err,data) {
 		  if (err) throw err;
 		  console.log("JavaScript File is parsed");
@@ -98,10 +104,6 @@ module.exports = {
 			}
 		});
 		return foundJsFiles;
-	},
-
-	processJavaScriptFile: function(path, componentName) {
-		return module.exports.processFilePath(path, componentName);
 	},
 
 	processFilePath: function(path, componentName) {

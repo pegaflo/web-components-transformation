@@ -3,7 +3,7 @@ let extractTemplate = require("./extractTemplate.js");
 
 module.exports = {
 
-	extractVisuals: function(componentName, filepath) {
+	extractVisualRules: function(componentName, filepath) {
 		return extractStyles.getVisualRules(componentName, filepath);
 	},
 

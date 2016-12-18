@@ -1,6 +1,6 @@
 var extractFunction = require("./extractFunctions.js");
 var extractProperties = require("./extractProperties.js");
-var synchronise = require("./synchronise.js");
+var synchronise = require("./synchronization.js");
 
 module.exports = {
 	getFunctions: function(analysisResult) {
@@ -12,7 +12,7 @@ module.exports = {
 	},
 
 	generateAttributeChangedFunction: function(properties, functions, creationFunction, detectedComponentType) {
-		return synchronise.createAttributeChangedFunction(properties, functions, creationFunction, detectedComponentType);
+		return synchronise.generateAttributeChangedFunction(properties, functions, creationFunction, detectedComponentType);
 	},
 
 	generateCreationFunction: function(properties, functions, creationFunction, detectedComponentType, templateObject, changeTriggers) {
