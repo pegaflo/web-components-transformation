@@ -42,9 +42,6 @@ module.exports = {
 						detectedComponentType = type;
 					});
 				}
-			} else if ((data.keywords !== undefined && data.keywords.indexOf("react") !== -1) ||
-					(data.dependencies !== undefined && ata.dependencies.react !== undefined)) {
-				detectedComponentType = "react";
 			} else {
 				// if there are no information about the used framework in the package.json, then analyze the javascript-File
 				module.exports.analyzeFilesForCreationFunction(analysisResult, function(type) {

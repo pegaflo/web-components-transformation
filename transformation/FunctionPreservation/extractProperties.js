@@ -50,7 +50,7 @@ module.exports = {
 	},
 
 	getDefaultValue: function(propertyObject, detectedComponentType) {
-		if(detectedComponentType === "jquery-ui") {
+		if(detectedComponentType === "jquery-ui" || detectedComponentType === "jquery") {
 			if(propertyObject.value.type === "ArrayExpression") {
 				let arrayValues = [];
 				propertyObject.value.elements.forEach(function (data) {
