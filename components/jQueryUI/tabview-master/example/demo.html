@@ -1,0 +1,181 @@
+	<!DOCTYPE html>
+	<html>
+
+	<head>
+	<title>JQM tabs</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet"  href="http://code.jquery.com/mobile/git/jquery.mobile-git.css"> 
+	<style type="text/css">
+	/* ui-collapsible-tabs, small screen falls back to top-down collapsible set */
+	@media (min-width: 40em) {
+		.ui-collapsible-tabs {
+			display: table;
+			table-layout: fixed;
+			width: 100%;
+		}
+		.ui-collapsible-tabs .ui-collapsible {
+			display: table-cell;
+		}
+		.ui-collapsible-tabs .ui-collapsible-content {
+			margin: 0;
+			padding: 0;
+			position: relative;
+		}
+		/* content width - IE8 ignores this, so falls back to regular collapsible-set */
+		.ui-collapsible-tabs[data-tabs="10"] .ui-collapsible .ui-collapsible-content {width: 1000%; }
+		.ui-collapsible-tabs[data-tabs="9"] .ui-collapsible .ui-collapsible-content {width: 900%; }
+		.ui-collapsible-tabs[data-tabs="8"] .ui-collapsible .ui-collapsible-content {width: 800%;}
+		.ui-collapsible-tabs[data-tabs="7"] .ui-collapsible .ui-collapsible-content {width: 700%;}
+		.ui-collapsible-tabs[data-tabs="6"] .ui-collapsible .ui-collapsible-content {width: 600%;}
+		.ui-collapsible-tabs[data-tabs="5"] .ui-collapsible .ui-collapsible-content {width: 500%;}
+		.ui-collapsible-tabs[data-tabs="4"] .ui-collapsible .ui-collapsible-content {width: 400%;}
+		.ui-collapsible-tabs[data-tabs="3"] .ui-collapsible .ui-collapsible-content {width: 300%;}
+		.ui-collapsible-tabs[data-tabs="2"] .ui-collapsible .ui-collapsible-content {width: 200%;}
+		.ui-collapsible-tabs[data-tabs="1"] .ui-collapsible .ui-collapsible-content {width: 100%;}
+
+		/* positioning (can use nth:child because IE8 does not care for the above */
+		.ui-collapsible-tabs .ui-collapsible:nth-child(1) .ui-collapsible-content {left: 0;}
+		.ui-collapsible-tabs .ui-collapsible:nth-child(2) .ui-collapsible-content {left: -100%;}
+		.ui-collapsible-tabs .ui-collapsible:nth-child(3) .ui-collapsible-content {left: -200%;}
+		.ui-collapsible-tabs .ui-collapsible:nth-child(4) .ui-collapsible-content {left: -300%;}
+		.ui-collapsible-tabs .ui-collapsible:nth-child(5) .ui-collapsible-content {left: -400%;}
+		.ui-collapsible-tabs .ui-collapsible:nth-child(6) .ui-collapsible-content {left: -500%;}
+		.ui-collapsible-tabs .ui-collapsible:nth-child(7) .ui-collapsible-content {left: -600%;}
+		.ui-collapsible-tabs .ui-collapsible:nth-child(8) .ui-collapsible-content {left: -700%;}
+		.ui-collapsible-tabs .ui-collapsible:nth-child(9) .ui-collapsible-content {left: -800%;}
+		.ui-collapsible-tabs .ui-collapsible:nth-child(10) .ui-collapsible-content {left: -900%;}
+
+		/* corners */
+		/* hardcode inset content-theme bottom corners, because can't inherit 0 on bottom left/right first/last tab */
+		.ui-collapsible-tabs .ui-collapsible-inset.ui-collapsible-themed-content:not(.ui-collapsible-collapsed) .ui-collapsible-content {
+			-webkit-border-bottom-left-radius: .6em;
+			border-bottom-left-radius: .6em;
+			-webkit-border-bottom-right-radius: .6em;
+			border-bottom-right-radius: .6em;
+		}
+		.ui-collapsible-tabs .ui-collapsible.ui-first-child {
+			-webkit-border-top-left-radius: inherit;
+			border-top-left-radius: inherit;
+			-webkit-border-top-right-radius: 0;
+			border-top-right-radius: 0;
+			-webkit-border-bottom-right-radius: 0;
+			border-bottom-right-radius: 0;
+		}
+		.ui-collapsible-tabs .ui-collapsible.ui-last-child {
+			-webkit-border-top-right-radius: inherit;
+			border-top-right-radius: inherit;
+			-webkit-border-top-left-radius: 0;
+			border-top-left-radius: 0;
+			-webkit-border-bottom-left-radius: 0;
+			border-bottom-left-radius: 0;
+		}
+		/* straight corner last-tab if one tab is open */
+		.ui-collapsible-tabs .ui-collapsible:not(.ui-collapsible-collapsed) ~ .ui-collapsible.ui-last-child {
+			-webkit-border-bottom-right-radius: 0;
+			border-bottom-right-radius: 0;
+		}
+		/* straight corner first-tab... this needs another class */
+		.ui-collapsible-tabs .ui-collapsible.ui-first-child.ui-collapsible-collapsed {
+			-webkit-border-bottom-left-radius: inherit;
+			border-bottom-left-radius: inherit;
+		}
+		/* because this does not work with preceeding siblings
+		.ui-collapsible-tabs .ui-collapsible:not(.ui-collapsible-collapsed) ~ .ui-collapsible.ui-first-child {
+			-webkit-border-bottom-left-radius: 0;
+			border-bottom-left-radius: 0;
+		}
+		*/
+		.ui-collapsible-tabs .ui-collapsible.ui-collapsible-collapsed.ui-first-child,
+		.ui-collapsible-tabs .ui-collapsible.ui-first-child {
+			border-bottom-left-radius: 0;
+			-webkit-border-bottom-left-radius: 0;
+		}
+		/* hide status text */
+		.ui-collapsible-tabs  .ui-collapsible-heading-status {
+			position: absolute !important;
+			left: -9999px;
+			clip: rect(1px 1px 1px 1px);
+			clip: rect(1px,1px,1px,1px);
+		}
+		/* borders */
+		.ui-collapsible-tabs .ui-collapsible:not(.ui-collapsible-collapsed) h1 a {
+			border-bottom-color: transparent;
+		}
+		.ui-collapsible-tabs .ui-collapsible .ui-collapsible-content {
+			border-top-color: transparent;
+			border-top-width: 1px; /* magic */
+		}
+		.ui-collapsible-tabs .ui-collapsible + .ui-collapsible h1 a {
+			border-left-color: transparent;
+		}
+	}
+	</style>
+
+	<script src="http://code.jquery.com/jquery-1.10.1.js"></script> 
+	<!-- <script src="http://code.jquery.com/mobile/git/jquery.mobile-git.js"></script> -->
+	<script src="latest.js"></script>
+
+
+	</head>
+	<body>
+
+	<div data-role="page">
+
+		<div data-role="header">
+			<h1>Collapsible Tabs</h1>
+		</div><!-- /header -->
+		<div data-role="content">
+		
+		<div data-role="collapsible-set" data-type="tabs" data-tabs="10" data-theme="a" data-content-theme="a">
+
+						<div data-role="collapsible" data-collapsed="false">
+							<h1>One</h1>
+							<p>One</p>
+						</div>
+						<div data-role="collapsible">
+							<h1>Two</h1>
+							<p>Two
+						</div>
+						<div data-role="collapsible">
+						<h1>Three</h1>
+							<p>Three</p>
+						</div>
+						<div data-role="collapsible">
+							<h1>Four</h1>
+							<p>Four</p>
+						</div>
+						<div data-role="collapsible">
+							<h1>Five</h1>
+							<p>Five</p>
+						</div>
+						<div data-role="collapsible">
+							<h1>Six</h1>
+							<p>Six</p>
+						</div>
+						<div data-role="collapsible">
+							<h1>Seven</h1>
+							<p>Seven</p>
+						</div>
+						<div data-role="collapsible">
+							<h1>Eight</h1>
+							<p>Eight</p>
+						</div>
+						<div data-role="collapsible">
+							<h1>Nine</h1>
+							<p>Nine</p>
+						</div>
+						<div data-role="collapsible">
+							<h1>Ten</h1>
+							<p>Ten</p>
+						</div>
+					</div>
+				</div>
+		
+		</div><!-- /content -->
+
+	</div><!-- /page -->
+
+	</body>
+	</html>
+

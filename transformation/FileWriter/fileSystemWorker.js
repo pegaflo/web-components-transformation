@@ -93,7 +93,8 @@ module.exports = {
 		let jQueryUIFolder;
 		let polymerFolder = polymerPath.replace("polymer.html", "").replace("../../", "./");
 
-		copydir.sync(polymerFolder, './dist/' + componentName + '/polymer/');
+		console.log(polymerFolder);
+		copydir(polymerFolder, './dist/' + componentName + '/polymer/', function() {});
 
 		frameworkPath.forEach(function (path) {
 			if (detectedComponentType === "jquery") {
@@ -108,12 +109,14 @@ module.exports = {
 		});
 
 		if (detectedComponentType === "jquery") {
-			copydir.sync(jQueryFolder, './dist/' + componentName + '/framework/jQuery');
+			copydir(jQueryFolder, './dist/' + componentName + '/framework/jQuery', function() {});
 		} else if (detectedComponentType === "jquery-ui") {
-			copydir.sync(jQueryFolder, './dist/' + componentName + '/framework/jQuery');
-			copydir.sync(jQueryUIFolder, './dist/' + componentName + '/framework/jQueryUI');
+			console.log(jQueryFolder);
+			console.log(jQueryUIFolder);
+			copydir(jQueryFolder, './dist/' + componentName + '/framework/jQuery', function() {});
+			copydir(jQueryUIFolder, './dist/' + componentName + '/framework/jQueryUI', function() {});
 		}
 
-		copydir.sync(__dirname + "/../../" + componentDirectory, './dist/' + componentName + '/component/');
+		copydir(__dirname + "/../../" + componentDirectory, './dist/' + componentName + '/component/', function() {});
 	}
 };

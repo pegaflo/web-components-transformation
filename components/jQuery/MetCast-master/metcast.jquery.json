@@ -1,0 +1,37 @@
+{
+    "name": "metcast",
+    "title": "MetCast",
+    "description": "A small jQuery plugin that fetches the current weather conditions for a specified location and displays them in a fully customisable widget.",
+    "keywords": [
+        "weather",
+        "api",
+        "ajax",
+        "live"
+    ],
+    "version": "1.1.0",
+    "author": {
+        "name": "Chris Till",
+        "email": "christill89@gmail.com",
+        "url": "http://iamchristill.com"
+    },
+    "maintainers": [
+        {
+            "name": "Chris Till",
+            "email": "christill89@gmail.com",
+            "url": "http://iamchristill.com"
+        }
+    ],
+    "licenses": [
+        {
+            "type": "MIT",
+            "url": "https://github.com/christill89/MetCast/blob/master/licence.txt"
+        }
+    ],
+    "bugs": "https://github.com/christill89/metcast/issues",
+    "homepage": "http://christill89.github.io/MetCast/",
+    "docs": "http://christill89.github.io/MetCast/",
+    "download": "https://github.com/christill89/metcast/archive/master.zip",
+    "dependencies": {
+        "jquery": ">=1.5"
+    }
+}

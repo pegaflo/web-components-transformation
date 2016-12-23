@@ -1,0 +1,69 @@
+/*-------------------------------------------------------------------
+	Page styles
+-------------------------------------------------------------------*/
+
+body{
+	background:#a3a771;
+	padding:150px;
+}
+
+#wrapper{
+	width:600px;
+	text-align: center;
+	margin:0 auto 50px;
+}
+
+h1{
+	font-family:arial;
+	text-align: center;
+}
+
+#weather{
+	width:200px;
+	margin:50px auto;
+}
+
+
+/*-------------------------------------------------------------------
+	MetCast styles
+-------------------------------------------------------------------*/
+
+.metCast-wrapper {
+	width:200px;
+	height:94px;
+	background:transparent url('img/bg.png') repeat 0 0;
+	border:2px solid rgba(236,246,254,0.8);
+	font-family:arial;
+}
+
+#metCast-icon{
+	width:94px;
+	height:94px;
+	background:transparent url('img/icon-sprite.png') no-repeat;
+}
+
+#metCast-text{
+	width:97px;
+	float:right;
+	height:80px;
+	overflow: hidden;
+	padding:6px 12px 0 0;
+	text-align: right;
+}
+
+#metCast-text p{
+	margin:7px 0;
+	color:#fff;
+}
+	#metCast-text p.Temp, 
+	#metCast-text p.Wind,
+	#metCast-text p.Pressure {display:block;}
+
+/*---- Weather Sprite Icon Co-ordinates -----*/
+
+#metCast-icon.sunny { background-position: 0 0; }
+#metCast-icon.rain { background-position: -94px 0; }
+#metCast-icon.cloudy { background-position: -188px 0; }
+#metCast-icon.thunder {	background-position: -282px 0; }
+#metCast-icon.partlycloudy { background-position: -470px 0; }
+#metCast-icon.snow { background-position: -564px 0; }

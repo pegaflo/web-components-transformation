@@ -1,0 +1,82 @@
+<!doctype html><html><head>
+
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+<link type="text/css" rel="stylesheet" media="all" href="../skins/darkglass/skin.css" />
+
+<script type="text/javascript" src="../lib/jquery-1.6.1.js"></script>
+<script type="text/javascript" src="../lib/jquery.easing.1.3.js"></script>
+<script type="text/javascript" src="../builds/jquery.photocradle-0.4.3.min.js"></script>
+
+</head><body style="background:#aaa;">
+
+<div class="photocradle" style="width:520px;height:340px;margin:170px 0 0 120px;float:left;"></div>
+<div class="photocradle" style="width:340px;height:180px;margin:80px 0 0 120px;float:left;"></div>
+
+<script>
+
+$(function(){
+
+var options = {
+    firstImageIndex: 5,
+    borderWeight: 4
+},
+
+params = {
+    sources: [
+        {
+            thumbnail: '../images/thumbnails/1.jpg',
+            preview: '../images/previews/1.jpg',
+            original: '../images/originals/1.jpg',
+            title: 'Woods troll'
+        }, {
+            thumbnail: '../images/thumbnails/2.jpg',
+            preview: '../images/previews/2.jpg',
+            original: '../images/originals/2.jpg',
+            title: 'A frosty tree New Zealand'
+        }, {
+            thumbnail: '../images/thumbnails/3.jpg',
+            preview: '../images/previews/3.jpg',
+            original: '../images/originals/3.jpg',
+            title: 'Bloody fog'
+        }, {
+            thumbnail: '../images/thumbnails/4.jpg',
+            preview: '../images/previews/4.jpg',
+            original: '../images/originals/4.jpg',
+            title: 'Blue dock'
+        }, {
+            thumbnail: '../images/thumbnails/5.jpg',
+            preview: '../images/previews/5.jpg',
+            original: '../images/originals/5.jpg',
+            title: 'Daisy wallpaper'
+        }, {
+            thumbnail: '../images/thumbnails/6.jpg',
+            preview: '../images/previews/6.jpg',
+            original: '../images/originals/6.jpg',
+            title: 'Flower'
+        }, {
+            thumbnail: '../images/thumbnails/7.jpg',
+            preview: '../images/previews/7.jpg',
+            original: '../images/originals/7.jpg',
+            title: 'Waterdrops on the glass'
+        }, {
+            thumbnail: '../images/thumbnails/8.jpg',
+            preview: '../images/previews/8.jpg',
+            original: '../images/originals/8.jpg',
+            title: 'I\'ll follow you'
+        }, {
+            thumbnail: '../images/thumbnails/9.jpg',
+            preview: '../images/previews/9.jpg',
+            original: '../images/originals/9.jpg',
+            title: 'Fresh green trees'
+        }
+    ]
+};
+
+$( '.photocradle' ).photocradle( params, options );
+
+});
+
+</script>
+
+</body></html>

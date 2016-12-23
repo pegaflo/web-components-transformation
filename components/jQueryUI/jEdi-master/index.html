@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+    <title>jEdi.js - Demo</title>
+    <style type="text/css"><!--
+        #toolbar { list-style:none; margin:0; padding:0; }
+        #toolbar li { width:150px; border:1px solid #000; background:e7e7e7; cursor:pointer; margin-bottom:5px; }
+        #editor { width:640px; height:380px; border:1px solid #000; }
+    --></style>
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+    <script src="jEdi.js"></script>
+    <script type="text/javascript">
+
+        $(document).ready(function(){
+            
+            $('#editor').jEdi({
+                'editorCSS' : 'demo.css', /* editor inline stylesheet */
+                'buttonSelector' : $('#toolbar .button') /* jQuery selector for editor buttons */
+            }).change(function(e, content){
+                // [...your code here...]
+            });
+
+            $('#showContent').click(function(){
+                alert($('#editor').jEdi('getContent'));
+            });                
+                
+        });
+
+    </script>
+    </head>
+<body>
+    <h1>jEdi - jQuery editor demo</h1>
+    <h2>May the source be with you</h2>
+    <h3>Editor buttons:</h3>
+    <p>Set data-cmd and data-value attributes to assign editor commands:</p>
+    <ul id="toolbar">
+        <li class="button" data-cmd="bold">Bold</li>
+        <li class="button" data-cmd="italic">Italic</li>
+        <li class="button" data-cmd="underline">Underline</li>
+        <li class="button" data-cmd="fontsize" data-value="5">Font-Size = 5</li>
+        <li id="showContent">Alert Content</li>
+    </ul>
+    <p>you can find a list of supported commands at mozilla developer network:<br />
+    <a href="https://developer.mozilla.org/en-US/docs/Rich-Text_Editing_in_Mozilla#Executing_Commands" target="_blank">https://developer.mozilla.org/en-US/docs/Rich-Text_Editing_in_Mozilla#Executing_Commands</a>
+    </p>
+    <h3>Editor:</h3>    
+    <div id="editor">
+        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+    </div>
+    <h3>Latest jEdi on GitHub:</h3>
+    <a href="https://github.com/dlehmann/jEdi" target="_blank">https://github.com/dlehmann/jEdi</a>
+
+</body>
+</html>

@@ -1,0 +1,31 @@
+{
+    "name": "jEdi",
+    "title": "jEdi - may the source be with you",
+    "description": "jQuery widget to build texteditors",
+    "keywords": [
+        "texteditor",
+        "editor",
+        "rte",
+        "wysiwyg"
+    ],
+    "version": "1.0.6",
+    "author": {
+        "name": "Dennis Lehmann",
+        "url": "http://www.quirks-modus.de"
+    },
+    "licenses": [
+        {
+            "type": "GPLv3",
+            "url": "http://www.gnu.org/licenses/gpl.html"
+        }
+    ],
+    "bugs": "https://github.com/dlehmann/jEdi/issues",
+    "homepage": "http://www.quirks-modus.de/_jEdi/",
+    "demo": "http://www.quirks-modus.de/_jEdi/",
+    "docs": "http://www.quirks-modus.de/_jEdi/",
+    "download": "https://github.com/dlehmann/jEdi/archive/master.zip",
+    "dependencies": {                                                                                          
+        "jquery": ">=1.9.1",
+        "jqueryui": ">=1.10.2"
+    }
+}

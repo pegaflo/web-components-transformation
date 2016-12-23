@@ -1,0 +1,180 @@
+<!DOCTYPE html> 
+<html> 
+	<head> 
+		<title>Modification Highlighter</title> 
+		<meta name="viewport" content="width=device-width, initial-scale=1"> 
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" >	
+		<link rel="stylesheet" type="text/css" href="./css/demo.css"> 
+		<link rel="stylesheet" type="text/css" href="./css/jquery-ui-1.8.20.custom.css"> 
+		
+		<script src="./script/jquery-1.7.1.min.js"></script>
+		<script src="./script/jquery-ui-1.8.20.custom.min.js"></script>	
+		<script src="./script/jquery-mod-highlighter.js"></script>
+	</head>
+	 	
+	<body>
+	<form id="frmData" action="#">
+		<h1>Modification Highlighter</h1>
+		<p>
+		</p>
+		
+		<div id="myData" class="tabular-data linear-form left">
+		<table>
+		<tr>
+			<th><label for="message">Message</label></th>
+			<td><input id="message" type="text" name="myText" size="20" value="Have a nice day!"/></td>
+		</tr>
+		<tr>
+			<th><label for="numberChoice">Number</label></th>
+			<td>
+				<select id="numberChoice" name="numberChoice">
+				<option value="">-- Pick a Number --</option>
+				<option value="1">One</option>
+				<option value="2">Two</option>
+				<option value="3">Three</option>
+				<option value="4">Four</option>
+				<option value="5">Five</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<th><label for="numberChoiceMultiple">Number (Multiple)</label></th>
+			<td>
+				<select id="numberChoiceMultiple" name="numberChoiceMultiple" multiple="multiple" size="6" style="min-width: 85px">
+				<option value="">-- Pick a Number --</option>
+				<option value="1" selected="selected">One</option>
+				<option value="2">Two</option>
+				<option value="3" selected="selected">Three</option>
+				<option value="4">Four</option>
+				<option value="5" selected="selected">Five</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<th><label id="favorite-sport-label">Favorite Sport</label></th>
+			<td>
+			<input type="checkbox" id="cbxFootball" name="cbxFootball" checked="checked" /><label for="cbxFootball">Football</label>			
+			<input type="checkbox" id="cbxBasketball" name="cbxBasketball" /><label for="cbxBasketball">Basketball</label>
+			</td>
+		</tr>
+		<tr>
+			<th><label id="happy-label">Happy?</label></th>
+			<td>
+			<input type="radio" id="myRadioYes" name="myRadio" checked="checked" value="Yes" /><label for="myRadioYes">Yes</label><br />
+			<input type="radio" id="myRadioNo" name="myRadio" value="No" /><label for="myRadioNo">No</label>
+			</td>
+		</tr>
+		<tr>
+			<th><label for="dtPicker">Game Date</label></th>
+			<td>
+				<input type="text" id="dtPicker" name="dtPicker" size="11" value="10/27/2012" />
+			</td>
+		</tr>
+		<tr>
+			<th><label for="myTextArea">Comment</label></th>
+			<td>
+			<textarea id="myTextArea" name="myTextArea" rows="5" cols="30">I have something to say!</textarea>
+			</td>
+		</tr>
+		</table>
+		<p>
+		<input name="btnReset" type="button" value="Reset" />&nbsp;&nbsp;&nbsp;&nbsp;
+		<input name="btnSave" type="button" value="Save" />&nbsp;&nbsp;&nbsp;&nbsp;
+		</p>
+		</div>
+		<div id="pendingChanges" class="tabular-data left"></div>
+		<div class="break"></div>
+		
+		</form>	
+	</body>
+	
+	<script type="text/javascript">
+	$(function() {
+		var tracker = $("div#myData").modificationHighlighter({
+			afterChange : function(event, data) {
+				var inp = data.input;
+				var clz = "ui-state-highlight";
+				if (inp.attr("id") == "cbxFootball" || inp.attr("id") == "cbxBasketball") {
+					if (inp.hasClass(clz)) {
+						$("label#favorite-sport-label").addClass(clz);
+					} else {
+						$("label#favorite-sport-label").removeClass(clz);
+					}
+				}
+				if (inp.attr("id") == "myRadioYes" || inp.attr("id") == "myRadioNo") {
+					if (inp.hasClass(clz)) {
+						$("label#happy-label").addClass(clz);
+					} else {
+						$("label#happy-label").removeClass(clz);
+					}
+				}
+			}
+		});
+		
+		$('input:text, select, textarea').addClass('ui-widget ui-widget-content ui-corner-all');
+		$('input[name="dtPicker"]').datepicker({
+			dateFormat: 'mm/dd/yy',
+			numberOfMonths: 1,
+			showButtonPanel: true,
+			changeYear: true,
+			yearRange: '2000:cnnnn'
+		});
+		
+		$("input[name='btnReset']").on("click", function(e) {
+			e.preventDefault();
+			
+			tracker.modificationHighlighter("reset");
+		});
+		
+		var showPending = function() {
+			var columns = tracker.modificationHighlighter("getModifiedColumns");
+			if (columns.length == 0) { return; }
+			
+			var buf = [];
+			buf.push("<table>");
+			buf.push("<tr>");
+			buf.push("<th>Column</th>");
+			buf.push("<th>Original Value</th>");
+			buf.push("<th>Pending Change</th>");
+			buf.push("</tr>");
+			for (var i=0, n=columns.length; i<n; i++) {
+				var column = columns[i];
+				if (column.id == 'myRadio' && column.originalValue == undefined) {
+					column.label = "Happy?";
+					column.originalValue ='Yes';
+				} 
+				
+				buf.push("<tr>");
+				buf.push("<td>");
+				buf.push(column.label);
+				buf.push("</td>");
+				buf.push("<td>");
+				buf.push(column.originalValue);
+				buf.push("</td>");
+				buf.push("<td>");
+				buf.push("<span class='ui-state-highlight'>" + column.value + "</span>");
+				buf.push("</td>");
+				buf.push("</tr>");
+			}
+			buf.push("</table>");
+			
+			$("div#pendingChanges").html(buf.join('')).show();
+		}
+		
+		$("input[name='btnSave']").on("click", function(e) {
+			e.preventDefault();
+			
+			tracker.modificationHighlighter("storeOriginalValues");
+		});
+		
+		$("div#myData").on("modificationhighlighterafterchange", function(event, data) {
+			var columns = tracker.modificationHighlighter("getModifiedColumns");
+			if (columns.length == 0) {
+				$("div#pendingChanges").html('').hide();
+			} else {
+				showPending();
+			}			
+		});
+	});
+	</script>
+</html>

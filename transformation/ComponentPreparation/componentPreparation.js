@@ -39,14 +39,14 @@ module.exports = {
 				if (err) throw err;
 				let jQueryPath = [];
 				paths.forEach(function(path) {
-					if (path.endsWith("/jquery.js") && path.indexOf("dist") === -1) {
+					if (path.endsWith("node_modules/jquery/dist/jquery.js")) {
 						jQueryPath.push(path);
 					}
 				});
 				foundPaths.push(module.exports.processFilePath(jQueryPath[0], componentName));
 				if(detectedComponentType === 'jquery-ui') {
 					paths.forEach(function(path) {
-						if (path.endsWith("/jquery-ui.js") && path.indexOf("dist") === -1) {
+						if (path.endsWith("node_modules/jquery-ui-bundle/jquery-ui.js")) {
 							foundPaths.push(module.exports.processFilePath(path, componentName));
 						}
 					});

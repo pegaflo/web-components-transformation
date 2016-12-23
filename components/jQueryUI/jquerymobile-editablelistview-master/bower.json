@@ -1,0 +1,27 @@
+{
+    "name": "jqm-editable-listview",
+    "version": "0.3.1",
+
+    "main": [
+        "build/jquery.mobile.editablelistview.js",
+        "build/jquery.mobile.editablelistview.min.js",
+        "build/jquery.mobile.editablelistview.css",
+        "build/jquery.mobile.editablelistview.min.css"
+    ],
+
+    "dependencies": {
+        "jqm-extended-collapsible": "~0.0.1"
+    },
+
+    "ignore": [
+        "demo",
+        "css",
+        "js",
+        "node_modules",
+        ".gitignore",
+        "README.md",
+        "package.json",
+        "gulpfile.js",
+        "tests"
+    ]
+}
