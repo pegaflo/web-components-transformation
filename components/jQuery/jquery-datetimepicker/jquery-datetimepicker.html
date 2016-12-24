@@ -1,0 +1,619 @@
+<link rel='import' href='./polymer/polymer.html'>
+<link rel='import' href='./jquery-datetimepicker.styles.html'>
+<script src='./framework/jQuery/jquery.js'></script>
+<script src='./component/jquery.datetimepicker.js'></script>
+
+<dom-module id='jquery-datetimepicker'>
+	<template>
+		<div id='entry'></div>
+	</template>
+	<script>
+		jQuery.noConflict();
+		(function($) {
+			$(function()  {
+				let element;
+				Polymer({
+					is: 'jquery-datetimepicker',
+					properties: {
+						i18n:{
+							type: Object,
+							value: "",
+							reflectToAttribute: true
+						},
+						ownerDocument:{
+							type: Object,
+							value: "",
+							reflectToAttribute: true
+						},
+						contentWindow:{
+							type: Object,
+							value: "",
+							reflectToAttribute: true
+						},
+						value:{
+							type: Object,
+							value: "",
+							reflectToAttribute: true
+						},
+						rtl:{
+							type: Boolean,
+							value: false,
+							reflectToAttribute: true
+						},
+						format:{
+							type: String,
+							value: "Y/m/d H:i",
+							reflectToAttribute: true
+						},
+						formatTime:{
+							type: String,
+							value: "H:i",
+							reflectToAttribute: true
+						},
+						formatDate:{
+							type: String,
+							value: "Y/m/d",
+							reflectToAttribute: true
+						},
+						startDate:{
+							type: Boolean,
+							value: false,
+							reflectToAttribute: true
+						},
+						step:{
+							type: Number,
+							value: 60,
+							reflectToAttribute: true
+						},
+						monthChangeSpinner:{
+							type: Boolean,
+							value: true,
+							reflectToAttribute: true
+						},
+						closeOnDateSelect:{
+							type: Boolean,
+							value: false,
+							reflectToAttribute: true
+						},
+						closeOnTimeSelect:{
+							type: Boolean,
+							value: true,
+							reflectToAttribute: true
+						},
+						closeOnWithoutClick:{
+							type: Boolean,
+							value: true,
+							reflectToAttribute: true
+						},
+						closeOnInputClick:{
+							type: Boolean,
+							value: true,
+							reflectToAttribute: true
+						},
+						timepicker:{
+							type: Boolean,
+							value: true,
+							reflectToAttribute: true
+						},
+						datepicker:{
+							type: Boolean,
+							value: true,
+							reflectToAttribute: true
+						},
+						weeks:{
+							type: Boolean,
+							value: false,
+							reflectToAttribute: true
+						},
+						defaultTime:{
+							type: Boolean,
+							value: false,
+							reflectToAttribute: true
+						},
+						defaultDate:{
+							type: Boolean,
+							value: false,
+							reflectToAttribute: true
+						},
+						minDate:{
+							type: Boolean,
+							value: false,
+							reflectToAttribute: true
+						},
+						maxDate:{
+							type: Boolean,
+							value: false,
+							reflectToAttribute: true
+						},
+						minTime:{
+							type: Boolean,
+							value: false,
+							reflectToAttribute: true
+						},
+						maxTime:{
+							type: Boolean,
+							value: false,
+							reflectToAttribute: true
+						},
+						disabledMinTime:{
+							type: Boolean,
+							value: false,
+							reflectToAttribute: true
+						},
+						disabledMaxTime:{
+							type: Boolean,
+							value: false,
+							reflectToAttribute: true
+						},
+						allowTimes:{
+							type: Array,
+							value: [],
+							reflectToAttribute: true
+						},
+						opened:{
+							type: Boolean,
+							value: false,
+							reflectToAttribute: true
+						},
+						initTime:{
+							type: Boolean,
+							value: true,
+							reflectToAttribute: true
+						},
+						inline:{
+							type: Boolean,
+							value: false,
+							reflectToAttribute: true
+						},
+						theme:{
+							type: Object,
+							value: "",
+							reflectToAttribute: true
+						},
+						onSelectDate:{
+							type: Object,
+							value: "",
+							reflectToAttribute: true
+						},
+						onSelectTime:{
+							type: Object,
+							value: "",
+							reflectToAttribute: true
+						},
+						onChangeMonth:{
+							type: Object,
+							value: "",
+							reflectToAttribute: true
+						},
+						onGetWeekOfYear:{
+							type: Object,
+							value: "",
+							reflectToAttribute: true
+						},
+						onChangeYear:{
+							type: Object,
+							value: "",
+							reflectToAttribute: true
+						},
+						onChangeDateTime:{
+							type: Object,
+							value: "",
+							reflectToAttribute: true
+						},
+						onShow:{
+							type: Object,
+							value: "",
+							reflectToAttribute: true
+						},
+						onClose:{
+							type: Object,
+							value: "",
+							reflectToAttribute: true
+						},
+						onGenerate:{
+							type: Object,
+							value: "",
+							reflectToAttribute: true
+						},
+						withoutCopyright:{
+							type: Boolean,
+							value: true,
+							reflectToAttribute: true
+						},
+						inverseButton:{
+							type: Boolean,
+							value: false,
+							reflectToAttribute: true
+						},
+						hours12:{
+							type: Boolean,
+							value: false,
+							reflectToAttribute: true
+						},
+						next:{
+							type: String,
+							value: "xdsoft_next",
+							reflectToAttribute: true
+						},
+						prev:{
+							type: String,
+							value: "xdsoft_prev",
+							reflectToAttribute: true
+						},
+						dayOfWeekStart:{
+							type: Number,
+							value: 0,
+							reflectToAttribute: true
+						},
+						parentID:{
+							type: String,
+							value: "body",
+							reflectToAttribute: true
+						},
+						timeHeightInTimePicker:{
+							type: Number,
+							value: 25,
+							reflectToAttribute: true
+						},
+						timepickerScrollbar:{
+							type: Boolean,
+							value: true,
+							reflectToAttribute: true
+						},
+						todayButton:{
+							type: Boolean,
+							value: true,
+							reflectToAttribute: true
+						},
+						prevButton:{
+							type: Boolean,
+							value: true,
+							reflectToAttribute: true
+						},
+						nextButton:{
+							type: Boolean,
+							value: true,
+							reflectToAttribute: true
+						},
+						defaultSelect:{
+							type: Boolean,
+							value: true,
+							reflectToAttribute: true
+						},
+						scrollMonth:{
+							type: Boolean,
+							value: true,
+							reflectToAttribute: true
+						},
+						scrollTime:{
+							type: Boolean,
+							value: true,
+							reflectToAttribute: true
+						},
+						scrollInput:{
+							type: Boolean,
+							value: true,
+							reflectToAttribute: true
+						},
+						lazyInit:{
+							type: Boolean,
+							value: false,
+							reflectToAttribute: true
+						},
+						mask:{
+							type: Boolean,
+							value: false,
+							reflectToAttribute: true
+						},
+						validateOnBlur:{
+							type: Boolean,
+							value: true,
+							reflectToAttribute: true
+						},
+						allowBlank:{
+							type: Boolean,
+							value: true,
+							reflectToAttribute: true
+						},
+						yearStart:{
+							type: Number,
+							value: 1950,
+							reflectToAttribute: true
+						},
+						yearEnd:{
+							type: Number,
+							value: 2050,
+							reflectToAttribute: true
+						},
+						monthStart:{
+							type: Number,
+							value: 0,
+							reflectToAttribute: true
+						},
+						monthEnd:{
+							type: Number,
+							value: 11,
+							reflectToAttribute: true
+						},
+						style:{
+							type: Object,
+							value: "",
+							reflectToAttribute: true
+						},
+						id:{
+							type: Object,
+							value: "",
+							reflectToAttribute: true
+						},
+						fixed:{
+							type: Boolean,
+							value: false,
+							reflectToAttribute: true
+						},
+						roundTime:{
+							type: String,
+							value: "round",
+							reflectToAttribute: true
+						},
+						className:{
+							type: Object,
+							value: "",
+							reflectToAttribute: true
+						},
+						weekends:{
+							type: Array,
+							value: [],
+							reflectToAttribute: true
+						},
+						highlightedDates:{
+							type: Array,
+							value: [],
+							reflectToAttribute: true
+						},
+						highlightedPeriods:{
+							type: Array,
+							value: [],
+							reflectToAttribute: true
+						},
+						allowDates:{
+							type: Array,
+							value: [],
+							reflectToAttribute: true
+						},
+						allowDateRe:{
+							type: Object,
+							value: null,
+							reflectToAttribute: true
+						},
+						disabledDates:{
+							type: Array,
+							value: [],
+							reflectToAttribute: true
+						},
+						disabledWeekDays:{
+							type: Array,
+							value: [],
+							reflectToAttribute: true
+						},
+						yearOffset:{
+							type: Number,
+							value: 0,
+							reflectToAttribute: true
+						},
+						beforeShowDay:{
+							type: Object,
+							value: null,
+							reflectToAttribute: true
+						},
+						enterLikeTab:{
+							type: Boolean,
+							value: true,
+							reflectToAttribute: true
+						},
+						showApplyButton:{
+							type: Boolean,
+							value: false,
+							reflectToAttribute: true
+						},
+					},
+					ready: function() {
+						var templateNodes = Polymer.dom(this).children;
+						for(let node of templateNodes) {
+							this.$.entry.appendChild(document.importNode(node, true));
+						}
+						element = $(this.$.entry.children);
+						let that = this;
+						element.datetimepicker({
+							i18n: this.i18n,
+							ownerDocument: this.ownerDocument,
+							contentWindow: this.contentWindow,
+							value: this.value,
+							rtl: this.rtl,
+							format: this.format,
+							formatTime: this.formatTime,
+							formatDate: this.formatDate,
+							startDate: this.startDate,
+							step: this.step,
+							monthChangeSpinner: this.monthChangeSpinner,
+							closeOnDateSelect: this.closeOnDateSelect,
+							closeOnTimeSelect: this.closeOnTimeSelect,
+							closeOnWithoutClick: this.closeOnWithoutClick,
+							closeOnInputClick: this.closeOnInputClick,
+							timepicker: this.timepicker,
+							datepicker: this.datepicker,
+							weeks: this.weeks,
+							defaultTime: this.defaultTime,
+							defaultDate: this.defaultDate,
+							minDate: this.minDate,
+							maxDate: this.maxDate,
+							minTime: this.minTime,
+							maxTime: this.maxTime,
+							disabledMinTime: this.disabledMinTime,
+							disabledMaxTime: this.disabledMaxTime,
+							allowTimes: this.allowTimes,
+							opened: this.opened,
+							initTime: this.initTime,
+							inline: this.inline,
+							theme: this.theme,
+							onSelectDate: this.onSelectDate,
+							onSelectTime: this.onSelectTime,
+							onChangeMonth: this.onChangeMonth,
+							onGetWeekOfYear: this.onGetWeekOfYear,
+							onChangeYear: this.onChangeYear,
+							onChangeDateTime: this.onChangeDateTime,
+							onShow: this.onShow,
+							onClose: this.onClose,
+							onGenerate: this.onGenerate,
+							withoutCopyright: this.withoutCopyright,
+							inverseButton: this.inverseButton,
+							hours12: this.hours12,
+							next: this.next,
+							prev: this.prev,
+							dayOfWeekStart: this.dayOfWeekStart,
+							parentID: this.parentID,
+							timeHeightInTimePicker: this.timeHeightInTimePicker,
+							timepickerScrollbar: this.timepickerScrollbar,
+							todayButton: this.todayButton,
+							prevButton: this.prevButton,
+							nextButton: this.nextButton,
+							defaultSelect: this.defaultSelect,
+							scrollMonth: this.scrollMonth,
+							scrollTime: this.scrollTime,
+							scrollInput: this.scrollInput,
+							lazyInit: this.lazyInit,
+							mask: this.mask,
+							validateOnBlur: this.validateOnBlur,
+							allowBlank: this.allowBlank,
+							yearStart: this.yearStart,
+							yearEnd: this.yearEnd,
+							monthStart: this.monthStart,
+							monthEnd: this.monthEnd,
+							style: this.style,
+							id: this.id,
+							fixed: this.fixed,
+							roundTime: this.roundTime,
+							className: this.className,
+							weekends: this.weekends,
+							highlightedDates: this.highlightedDates,
+							highlightedPeriods: this.highlightedPeriods,
+							allowDates: this.allowDates,
+							allowDateRe: this.allowDateRe,
+							disabledDates: this.disabledDates,
+							disabledWeekDays: this.disabledWeekDays,
+							yearOffset: this.yearOffset,
+							beforeShowDay: this.beforeShowDay,
+							enterLikeTab: this.enterLikeTab,
+							showApplyButton: this.showApplyButton
+						}).on('xchange.xdsoft', function(event, attr) {
+							that.xdsoft = attr;
+						}).on('changedatetime.xdsoft', function(event, attr) {
+							that.xdsoft = attr;
+						}).on('xchange.xdsoft', function(event, attr) {
+							that.xdsoft = attr;
+						}).on('xchange.xdsoft', function(event, attr) {
+							that.xdsoft = attr;
+						}).on('xchange.xdsoft', function(event, attr) {
+							that.xdsoft = attr;
+						}).on('xchange.xdsoft', function(event, attr) {
+							that.xdsoft = attr;
+						}).on('xchange.xdsoft', function(event, attr) {
+							that.xdsoft = attr;
+						}).on('changedatetime.xdsoft', function(event, attr) {
+							that.xdsoft = attr;
+						}).on('xchange.xdsoft', function(event, attr) {
+							that.xdsoft = attr;
+						}).on('changedatetime.xdsoft', function(event, attr) {
+							that.xdsoft = attr;
+						}).on('changedatetime.xdsoft', function(event, attr) {
+							that.xdsoft = attr;
+						});
+					},
+					attributeChanged: function(attribute, oldValue, newValue) {
+						element.datetimepicker({
+							i18n: this.i18n,
+							ownerDocument: this.ownerDocument,
+							contentWindow: this.contentWindow,
+							value: this.value,
+							rtl: this.rtl,
+							format: this.format,
+							formatTime: this.formatTime,
+							formatDate: this.formatDate,
+							startDate: this.startDate,
+							step: this.step,
+							monthChangeSpinner: this.monthChangeSpinner,
+							closeOnDateSelect: this.closeOnDateSelect,
+							closeOnTimeSelect: this.closeOnTimeSelect,
+							closeOnWithoutClick: this.closeOnWithoutClick,
+							closeOnInputClick: this.closeOnInputClick,
+							timepicker: this.timepicker,
+							datepicker: this.datepicker,
+							weeks: this.weeks,
+							defaultTime: this.defaultTime,
+							defaultDate: this.defaultDate,
+							minDate: this.minDate,
+							maxDate: this.maxDate,
+							minTime: this.minTime,
+							maxTime: this.maxTime,
+							disabledMinTime: this.disabledMinTime,
+							disabledMaxTime: this.disabledMaxTime,
+							allowTimes: this.allowTimes,
+							opened: this.opened,
+							initTime: this.initTime,
+							inline: this.inline,
+							theme: this.theme,
+							onSelectDate: this.onSelectDate,
+							onSelectTime: this.onSelectTime,
+							onChangeMonth: this.onChangeMonth,
+							onGetWeekOfYear: this.onGetWeekOfYear,
+							onChangeYear: this.onChangeYear,
+							onChangeDateTime: this.onChangeDateTime,
+							onShow: this.onShow,
+							onClose: this.onClose,
+							onGenerate: this.onGenerate,
+							withoutCopyright: this.withoutCopyright,
+							inverseButton: this.inverseButton,
+							hours12: this.hours12,
+							next: this.next,
+							prev: this.prev,
+							dayOfWeekStart: this.dayOfWeekStart,
+							parentID: this.parentID,
+							timeHeightInTimePicker: this.timeHeightInTimePicker,
+							timepickerScrollbar: this.timepickerScrollbar,
+							todayButton: this.todayButton,
+							prevButton: this.prevButton,
+							nextButton: this.nextButton,
+							defaultSelect: this.defaultSelect,
+							scrollMonth: this.scrollMonth,
+							scrollTime: this.scrollTime,
+							scrollInput: this.scrollInput,
+							lazyInit: this.lazyInit,
+							mask: this.mask,
+							validateOnBlur: this.validateOnBlur,
+							allowBlank: this.allowBlank,
+							yearStart: this.yearStart,
+							yearEnd: this.yearEnd,
+							monthStart: this.monthStart,
+							monthEnd: this.monthEnd,
+							style: this.style,
+							id: this.id,
+							fixed: this.fixed,
+							roundTime: this.roundTime,
+							className: this.className,
+							weekends: this.weekends,
+							highlightedDates: this.highlightedDates,
+							highlightedPeriods: this.highlightedPeriods,
+							allowDates: this.allowDates,
+							allowDateRe: this.allowDateRe,
+							disabledDates: this.disabledDates,
+							disabledWeekDays: this.disabledWeekDays,
+							yearOffset: this.yearOffset,
+							beforeShowDay: this.beforeShowDay,
+							enterLikeTab: this.enterLikeTab,
+							showApplyButton: this.showApplyButton
+						});
+					}
+				});
+			});
+		})(jQuery)
+	</script>
+</dom-module>

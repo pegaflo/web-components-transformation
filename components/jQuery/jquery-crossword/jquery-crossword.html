@@ -1,0 +1,72 @@
+<link rel='import' href='./polymer/polymer.html'>
+<link rel='import' href='./jquery-crossword.styles.html'>
+<script src='./framework/jQuery/jquery.js'></script>
+<script src='./component/crossword.js'></script>
+
+<dom-module id='jquery-crossword'>
+	<template>
+		<div id='entry'></div>
+	</template>
+	<script>
+		jQuery.noConflict();
+		(function($) {
+			$(function()  {
+				let element;
+				Polymer({
+					is: 'jquery-crossword',
+					properties: {
+						colour:{
+							type: String,
+							value: "Black",
+							reflectToAttribute: true
+						},
+						cluesToRight:{
+							type: Boolean,
+							value: true,
+							reflectToAttribute: true
+						},
+						clueBox:{
+							type: Boolean,
+							value: true,
+							reflectToAttribute: true
+						},
+						validateAnswer:{
+							type: String,
+							value: "none",
+							reflectToAttribute: true
+						},
+						tileSize:{
+							type: Number,
+							value: 25,
+							reflectToAttribute: true
+						},
+					},
+					ready: function() {
+						var templateNodes = Polymer.dom(this).children;
+						for(let node of templateNodes) {
+							this.$.entry.appendChild(document.importNode(node, true));
+						}
+						element = $(this.$.entry.children);
+						let that = this;
+						element.crossword({
+							colour: this.colour,
+							cluesToRight: this.cluesToRight,
+							clueBox: this.clueBox,
+							validateAnswer: this.validateAnswer,
+							tileSize: this.tileSize
+						});
+					},
+					attributeChanged: function(attribute, oldValue, newValue) {
+						element.crossword({
+							colour: this.colour,
+							cluesToRight: this.cluesToRight,
+							clueBox: this.clueBox,
+							validateAnswer: this.validateAnswer,
+							tileSize: this.tileSize
+						});
+					}
+				});
+			});
+		})(jQuery)
+	</script>
+</dom-module>

@@ -23,9 +23,9 @@ module.exports = {
 							}
 						}
 					} else if (node.type === "VariableDeclarator") {
-						if (node.id !== undefined && node.id.name === "defaults") {
+						if (node.id !== undefined && (node.id.name === "defaults" || node.id.name === "defaultOptions" || node.id.name === "default_options")) {
 							if (node.init !== null) {
-								processedProperties =  module.exports.processProperties(node.init.properties, detectedComponentType);
+								processedProperties = module.exports.processProperties(node.init.properties, detectedComponentType);
 							}
 						}
 					}
@@ -79,6 +79,9 @@ module.exports = {
 		} else {
 			let dataType = typeof value;
 			if(dataType === "undefined") {
+				dataType = "object";
+			}
+			if (value === "") {
 				dataType = "object";
 			}
 			return dataType;

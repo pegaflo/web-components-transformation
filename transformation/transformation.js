@@ -5,7 +5,7 @@ let fileWriter = require("./FileWriter/fileSystemWorker.js");
 let visualDesign = require("./VisualDesign/extractVisuals.js")
 let informationExtraction = require("./FunctionPreservation/informationExtraction.js");
 
-//let hoist = require('hoister');
+let hoist = require('hoister');
 
 //get the arguments that are passed from the command line
 let argv = require('minimist')(process.argv.slice(2));
@@ -22,6 +22,7 @@ componentPreparation.getComponentsFilePaths(componentPath, function(filePaths) {
 		let foundFile = componentPreparation.findJavaScriptFile(filePaths, componentMainFilePath);
 
 			componentPreparation.parseJavaScriptFile(foundFile[0], function(analysisResult) {
+				analysisResult = hoist(analysisResult);
 				componentClassification.analyzeComponentType(filePaths, analysisResult, function(detectedComponentType) {
 					fileWriter.debugWriteFile(componentName, analysisResult);
 
@@ -32,7 +33,7 @@ componentPreparation.getComponentsFilePaths(componentPath, function(filePaths) {
 							let foundProperties = informationExtraction.getProperties(analysisResult, detectedComponentType);
 							let detectedCreationFunction = informationExtraction.getCreationFunction(analysisResult, detectedComponentType);
 
-							let visualFile = visualDesign.extractVisualRules(componentName, filePaths, detectedComponentType);
+							let visualFile = visualDesign.extractVisualRules(componentPath, filePaths, componentName);
 							let templateObject = visualDesign.extractTemplate(analysisResult, detectedComponentType, componentName);
 
 							informationExtraction.getChangeTrigger(analysisResult, foundProperties, function(changeTrigger) {

@@ -1,0 +1,212 @@
+<link rel='import' href='./polymer/polymer.html'>
+<link rel='import' href='./jquery-timepicker.styles.html'>
+<script src='./framework/jQuery/jquery.js'></script>
+<script src='./component/jquery.timepicker.js'></script>
+
+<dom-module id='jquery-timepicker'>
+	<template>
+		<div id='entry'></div>
+	</template>
+	<script>
+		jQuery.noConflict();
+		(function($) {
+			$(function()  {
+				let element;
+				Polymer({
+					is: 'jquery-timepicker',
+					properties: {
+						appendTo:{
+							type: String,
+							value: "body",
+							reflectToAttribute: true
+						},
+						className:{
+							type: Object,
+							value: null,
+							reflectToAttribute: true
+						},
+						closeOnWindowScroll:{
+							type: Boolean,
+							value: false,
+							reflectToAttribute: true
+						},
+						disableTextInput:{
+							type: Boolean,
+							value: false,
+							reflectToAttribute: true
+						},
+						disableTimeRanges:{
+							type: Array,
+							value: [],
+							reflectToAttribute: true
+						},
+						disableTouchKeyboard:{
+							type: Boolean,
+							value: false,
+							reflectToAttribute: true
+						},
+						durationTime:{
+							type: Object,
+							value: null,
+							reflectToAttribute: true
+						},
+						forceRoundTime:{
+							type: Boolean,
+							value: false,
+							reflectToAttribute: true
+						},
+						maxTime:{
+							type: Object,
+							value: null,
+							reflectToAttribute: true
+						},
+						minTime:{
+							type: Object,
+							value: null,
+							reflectToAttribute: true
+						},
+						noneOption:{
+							type: Boolean,
+							value: false,
+							reflectToAttribute: true
+						},
+						orientation:{
+							type: String,
+							value: "l",
+							reflectToAttribute: true
+						},
+						roundingFunction:{
+							type: Object,
+							value: "",
+							reflectToAttribute: true
+						},
+						scrollDefault:{
+							type: Object,
+							value: null,
+							reflectToAttribute: true
+						},
+						selectOnBlur:{
+							type: Boolean,
+							value: false,
+							reflectToAttribute: true
+						},
+						show2400:{
+							type: Boolean,
+							value: false,
+							reflectToAttribute: true
+						},
+						showDuration:{
+							type: Boolean,
+							value: false,
+							reflectToAttribute: true
+						},
+						showOn:{
+							type: Array,
+							value: ["click","focus"],
+							reflectToAttribute: true
+						},
+						showOnFocus:{
+							type: Boolean,
+							value: true,
+							reflectToAttribute: true
+						},
+						step:{
+							type: Number,
+							value: 30,
+							reflectToAttribute: true
+						},
+						stopScrollPropagation:{
+							type: Boolean,
+							value: false,
+							reflectToAttribute: true
+						},
+						timeFormat:{
+							type: String,
+							value: "g:ia",
+							reflectToAttribute: true
+						},
+						typeaheadHighlight:{
+							type: Boolean,
+							value: true,
+							reflectToAttribute: true
+						},
+						useSelect:{
+							type: Boolean,
+							value: false,
+							reflectToAttribute: true
+						},
+						wrapHours:{
+							type: Boolean,
+							value: true,
+							reflectToAttribute: true
+						},
+					},
+					ready: function() {
+						var templateNodes = Polymer.dom(this).children;
+						for(let node of templateNodes) {
+							this.$.entry.appendChild(document.importNode(node, true));
+						}
+						element = $(this.$.entry.children);
+						let that = this;
+						element.timepicker({
+							appendTo: this.appendTo,
+							className: this.className,
+							closeOnWindowScroll: this.closeOnWindowScroll,
+							disableTextInput: this.disableTextInput,
+							disableTimeRanges: this.disableTimeRanges,
+							disableTouchKeyboard: this.disableTouchKeyboard,
+							durationTime: this.durationTime,
+							forceRoundTime: this.forceRoundTime,
+							maxTime: this.maxTime,
+							minTime: this.minTime,
+							noneOption: this.noneOption,
+							orientation: this.orientation,
+							roundingFunction: this.roundingFunction,
+							scrollDefault: this.scrollDefault,
+							selectOnBlur: this.selectOnBlur,
+							show2400: this.show2400,
+							showDuration: this.showDuration,
+							showOn: this.showOn,
+							showOnFocus: this.showOnFocus,
+							step: this.step,
+							stopScrollPropagation: this.stopScrollPropagation,
+							timeFormat: this.timeFormat,
+							typeaheadHighlight: this.typeaheadHighlight,
+							useSelect: this.useSelect,
+							wrapHours: this.wrapHours
+						});
+					},
+					attributeChanged: function(attribute, oldValue, newValue) {
+						element.timepicker({
+							appendTo: this.appendTo,
+							className: this.className,
+							closeOnWindowScroll: this.closeOnWindowScroll,
+							disableTextInput: this.disableTextInput,
+							disableTimeRanges: this.disableTimeRanges,
+							disableTouchKeyboard: this.disableTouchKeyboard,
+							durationTime: this.durationTime,
+							forceRoundTime: this.forceRoundTime,
+							maxTime: this.maxTime,
+							minTime: this.minTime,
+							noneOption: this.noneOption,
+							orientation: this.orientation,
+							roundingFunction: this.roundingFunction,
+							scrollDefault: this.scrollDefault,
+							selectOnBlur: this.selectOnBlur,
+							show2400: this.show2400,
+							showDuration: this.showDuration,
+							showOn: this.showOn,
+							showOnFocus: this.showOnFocus,
+							step: this.step,
+							stopScrollPropagation: this.stopScrollPropagation,
+							timeFormat: this.timeFormat,
+							typeaheadHighlight: this.typeaheadHighlight,
+							useSelect: this.useSelect,
+							wrapHours: this.wrapHours
+						});
+					}
+				});
+			});
+		})(jQuery)
+	</script>
+</dom-module>

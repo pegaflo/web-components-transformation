@@ -1,0 +1,142 @@
+<link rel='import' href='./polymer/polymer.html'>
+<link rel='import' href='./jquery-powertip.styles.html'>
+<script src='./framework/jQuery/jquery.js'></script>
+<script src='./component/src/core.js'></script>
+
+<dom-module id='jquery-powertip'>
+	<template>
+		<div id='entry'></div>
+	</template>
+	<script>
+		jQuery.noConflict();
+		(function($) {
+			$(function()  {
+				let element;
+				Polymer({
+					is: 'jquery-powertip',
+					properties: {
+						fadeInTime:{
+							type: Number,
+							value: 200,
+							reflectToAttribute: true
+						},
+						fadeOutTime:{
+							type: Number,
+							value: 100,
+							reflectToAttribute: true
+						},
+						followMouse:{
+							type: Boolean,
+							value: false,
+							reflectToAttribute: true
+						},
+						popupId:{
+							type: String,
+							value: "powerTip",
+							reflectToAttribute: true
+						},
+						popupClass:{
+							type: Object,
+							value: null,
+							reflectToAttribute: true
+						},
+						intentSensitivity:{
+							type: Number,
+							value: 7,
+							reflectToAttribute: true
+						},
+						intentPollInterval:{
+							type: Number,
+							value: 100,
+							reflectToAttribute: true
+						},
+						closeDelay:{
+							type: Number,
+							value: 100,
+							reflectToAttribute: true
+						},
+						placement:{
+							type: String,
+							value: "n",
+							reflectToAttribute: true
+						},
+						smartPlacement:{
+							type: Boolean,
+							value: false,
+							reflectToAttribute: true
+						},
+						offset:{
+							type: Number,
+							value: 10,
+							reflectToAttribute: true
+						},
+						mouseOnToPopup:{
+							type: Boolean,
+							value: false,
+							reflectToAttribute: true
+						},
+						manual:{
+							type: Boolean,
+							value: false,
+							reflectToAttribute: true
+						},
+						openEvents:{
+							type: Array,
+							value: ["mouseenter","focus"],
+							reflectToAttribute: true
+						},
+						closeEvents:{
+							type: Array,
+							value: ["mouseleave","blur"],
+							reflectToAttribute: true
+						},
+					},
+					ready: function() {
+						var templateNodes = Polymer.dom(this).children;
+						for(let node of templateNodes) {
+							this.$.entry.appendChild(document.importNode(node, true));
+						}
+						element = $(this.$.entry.children);
+						let that = this;
+						element.powerTip({
+							fadeInTime: this.fadeInTime,
+							fadeOutTime: this.fadeOutTime,
+							followMouse: this.followMouse,
+							popupId: this.popupId,
+							popupClass: this.popupClass,
+							intentSensitivity: this.intentSensitivity,
+							intentPollInterval: this.intentPollInterval,
+							closeDelay: this.closeDelay,
+							placement: this.placement,
+							smartPlacement: this.smartPlacement,
+							offset: this.offset,
+							mouseOnToPopup: this.mouseOnToPopup,
+							manual: this.manual,
+							openEvents: this.openEvents,
+							closeEvents: this.closeEvents
+						});
+					},
+					attributeChanged: function(attribute, oldValue, newValue) {
+						element.powerTip({
+							fadeInTime: this.fadeInTime,
+							fadeOutTime: this.fadeOutTime,
+							followMouse: this.followMouse,
+							popupId: this.popupId,
+							popupClass: this.popupClass,
+							intentSensitivity: this.intentSensitivity,
+							intentPollInterval: this.intentPollInterval,
+							closeDelay: this.closeDelay,
+							placement: this.placement,
+							smartPlacement: this.smartPlacement,
+							offset: this.offset,
+							mouseOnToPopup: this.mouseOnToPopup,
+							manual: this.manual,
+							openEvents: this.openEvents,
+							closeEvents: this.closeEvents
+						});
+					}
+				});
+			});
+		})(jQuery)
+	</script>
+</dom-module>

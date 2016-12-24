@@ -32,9 +32,12 @@ module.exports = {
 			}
 			//check if one of the supported Frameworks is written in this package.json
 			// is written in the keywords or the dependencies, search for a string
-			if ((data.keywords !== undefined && data.keywords.indexOf("jquery") !== -1) || (data.dependencies !== undefined && data.dependencies.jquery !== undefined)) {
-				if (data.keywords.indexOf("jqueryui") === -1 || data.keywords.indexOf("jquery-ui") === -1 || data.dependencies["jquery-ui"] === undefined) {
-					detectedComponentType = "jquery"
+			if (data.keywords !== undefined) {
+				if (data.keywords.indexOf("jquery") !== -1) {
+					detectedComponentType = "jquery";
+				}
+				if (data.keywords.indexOf("jquery-ui") !== -1 || data.keywords.indexOf("jqueryui") !== -1) {
+					detectedComponentType = "jquery-ui";
 				} else {
 					// when there is no jquery-ui in the package,json, then it is not ensured that there is no jquery-ui library somewhere in the component folder
 					// so to be sure, analyze also the Component File
@@ -42,12 +45,28 @@ module.exports = {
 						detectedComponentType = type;
 					});
 				}
+			} else if (data.dependencies !== undefined) {
+				if (data.dependencies.jquery !== undefined) {
+					detectedComponentType = "jquery";
+				}
+				if (data.dependencies["jquery-ui"] !== undefined) {
+					detectedComponentType = "jquery-ui";
+				} else {
+					// when there is no jquery-ui in the package,json, then it is not ensured that there is no jquery-ui library somewhere in the component folder
+					// so to be sure, analyze also the Component File
+					module.exports.analyzeFilesForCreationFunction(analysisResult, function(type) {
+						detectedComponentType = type;
+					});
+				}
+
 			} else {
-				// if there are no information about the used framework in the package.json, then analyze the javascript-File
+				// when there is no jquery-ui in the package,json, then it is not ensured that there is no jquery-ui library somewhere in the component folder
+				// so to be sure, analyze also the Component File
 				module.exports.analyzeFilesForCreationFunction(analysisResult, function(type) {
 					detectedComponentType = type;
 				});
 			}
+
 			console.log("Component Type is detected from package.json. Detected Component Type: " + detectedComponentType);
 			callback(detectedComponentType);
 		});
@@ -60,7 +79,7 @@ module.exports = {
 
 		estraverse.traverse(analysisResult, {
 			enter: function(node, parent) {
-				if(node.type == "MemberExpression") {
+				if (node.type == "MemberExpression") {
 					// these are that functions, that are called after a point (e.g. this.FUNCTION)
 					extractedMemberExpressionProperties.push(node.property);
 				}
@@ -74,11 +93,11 @@ module.exports = {
 				jQueryFound = true;
 			}
 		});
-		if(jQueryUIFound) {
+		if (jQueryUIFound) {
 			detectedComponentType = "jquery-ui";
 		} else if (jQueryFound) {
 			detectedComponentType = "jquery";
-		}else {
+		} else {
 			detectedComponentType = "n/a";
 		}
 		console.log("Component Type is detected from analysis of the creation function. Detected Component Type: " + detectedComponentType);

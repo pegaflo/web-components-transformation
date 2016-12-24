@@ -1,0 +1,37 @@
+<link rel='import' href='./polymer/polymer.html'>
+<link rel='import' href='./jquery-mask-plugin.styles.html'>
+<script src='./framework/jQuery/jquery.js'></script>
+<script src='./component/dist/jquery.mask.js'></script>
+
+<dom-module id='jquery-mask-plugin'>
+	<template>
+		<div id='entry'></div>
+	</template>
+	<script>
+		jQuery.noConflict();
+		(function($) {
+			$(function()  {
+				let element;
+				Polymer({
+					is: 'jquery-mask-plugin',
+					properties: {
+					},
+					ready: function() {
+						var templateNodes = Polymer.dom(this).children;
+						for(let node of templateNodes) {
+							this.$.entry.appendChild(document.importNode(node, true));
+						}
+						element = $(this.$.entry.children);
+						let that = this;
+						element.cleanVal({
+						});
+					},
+					attributeChanged: function(attribute, oldValue, newValue) {
+						element.cleanVal({
+						});
+					}
+				});
+			});
+		})(jQuery)
+	</script>
+</dom-module>

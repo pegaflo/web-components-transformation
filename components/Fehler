@@ -1,6 +1,6 @@
 jQueryUI
 acescroll:			(ok)	
-apeye:				(ok)	
+apeye:				(not ok)  --> auslesem creationFunction
 filterbar:			(ok)	
 imFeedBack:			(not ok)  --> auslesen creationname nicht möglich( mehrfache Definition Widget, schwer zu erkennen)
 jbPivot:			(ok)	
@@ -22,26 +22,26 @@ tabview:			(ok)
 
 
 jQuery
-datetimepicker-master: 			
-flexible-stars-master: 			
-intl-tel-input-master: 			
-ion-rangeSlider-master: 		
-jCrossword-master: 			
-jquery-gravatar-master:			
-jquery-locationpicker-plugin: 		
-jQuery-Mask-Plugin:			
-jquery-powertip-master:			
-jquery-treetable:			
-jquery-upvote:				
-jsphotocradle:				
-lightgallery:				
-MetCast:				
-select2:				
-selectize.js:				
-select-or-die:				
-snapper:				
-taggingJS:				
-timepicker:				
+datetimepicker-master: 		(ok)		
+flexible-stars-master: 		(ok)	
+intl-tel-input-master: 		(ok)	
+ion-rangeSlider-master: 	(ok)	
+jCrossword-master: 		(ok)	
+jquery-gravatar-master:		(ok)	
+jquery-locationpicker-plugin: 	(ok)	
+jQuery-Mask-Plugin:		(ok)	
+jquery-powertip-master:		(ok)	
+jquery-treetable:		(ok)	
+jquery-upvote:			(ok)	
+jsphotocradle:			(ok)	
+lightgallery:			(ok)	
+MetCast:			(ok)	
+select2:			(ok)	
+selectize.js:			(ok) --> Auswahl der richtigen Datei (?)	
+select-or-die:			(ok)	
+snapper:			(ok)	
+taggingJS:			(ok)	
+timepicker:			(ok)	
 
 
 

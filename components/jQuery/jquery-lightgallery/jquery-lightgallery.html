@@ -1,0 +1,310 @@
+<link rel='import' href='./polymer/polymer.html'>
+<link rel='import' href='./jquery-lightgallery.styles.html'>
+<script src='./framework/jQuery/jquery.js'></script>
+<script src='./component/dist/js/lightgallery.js'></script>
+
+<dom-module id='jquery-lightgallery'>
+	<template>
+		<div id='entry'></div>
+	</template>
+	<script>
+		jQuery.noConflict();
+		(function($) {
+			$(function()  {
+				let element;
+				Polymer({
+					is: 'jquery-lightgallery',
+					properties: {
+						mode:{
+							type: String,
+							value: "lg-slide",
+							reflectToAttribute: true
+						},
+						cssEasing:{
+							type: String,
+							value: "ease",
+							reflectToAttribute: true
+						},
+						easing:{
+							type: String,
+							value: "linear",
+							reflectToAttribute: true
+						},
+						speed:{
+							type: Number,
+							value: 600,
+							reflectToAttribute: true
+						},
+						height:{
+							type: String,
+							value: "100%",
+							reflectToAttribute: true
+						},
+						width:{
+							type: String,
+							value: "100%",
+							reflectToAttribute: true
+						},
+						addClass:{
+							type: Object,
+							value: "",
+							reflectToAttribute: true
+						},
+						startClass:{
+							type: String,
+							value: "lg-start-zoom",
+							reflectToAttribute: true
+						},
+						backdropDuration:{
+							type: Number,
+							value: 150,
+							reflectToAttribute: true
+						},
+						hideBarsDelay:{
+							type: Number,
+							value: 6000,
+							reflectToAttribute: true
+						},
+						useLeft:{
+							type: Boolean,
+							value: false,
+							reflectToAttribute: true
+						},
+						closable:{
+							type: Boolean,
+							value: true,
+							reflectToAttribute: true
+						},
+						loop:{
+							type: Boolean,
+							value: true,
+							reflectToAttribute: true
+						},
+						escKey:{
+							type: Boolean,
+							value: true,
+							reflectToAttribute: true
+						},
+						keyPress:{
+							type: Boolean,
+							value: true,
+							reflectToAttribute: true
+						},
+						controls:{
+							type: Boolean,
+							value: true,
+							reflectToAttribute: true
+						},
+						slideEndAnimatoin:{
+							type: Boolean,
+							value: true,
+							reflectToAttribute: true
+						},
+						hideControlOnEnd:{
+							type: Boolean,
+							value: false,
+							reflectToAttribute: true
+						},
+						mousewheel:{
+							type: Boolean,
+							value: true,
+							reflectToAttribute: true
+						},
+						getCaptionFromTitleOrAlt:{
+							type: Boolean,
+							value: true,
+							reflectToAttribute: true
+						},
+						appendSubHtmlTo:{
+							type: String,
+							value: ".lg-sub-html",
+							reflectToAttribute: true
+						},
+						subHtmlSelectorRelative:{
+							type: Boolean,
+							value: false,
+							reflectToAttribute: true
+						},
+						preload:{
+							type: Number,
+							value: 1,
+							reflectToAttribute: true
+						},
+						showAfterLoad:{
+							type: Boolean,
+							value: true,
+							reflectToAttribute: true
+						},
+						selector:{
+							type: Object,
+							value: "",
+							reflectToAttribute: true
+						},
+						selectWithin:{
+							type: Object,
+							value: "",
+							reflectToAttribute: true
+						},
+						nextHtml:{
+							type: Object,
+							value: "",
+							reflectToAttribute: true
+						},
+						prevHtml:{
+							type: Object,
+							value: "",
+							reflectToAttribute: true
+						},
+						index:{
+							type: Boolean,
+							value: false,
+							reflectToAttribute: true
+						},
+						iframeMaxWidth:{
+							type: String,
+							value: "100%",
+							reflectToAttribute: true
+						},
+						download:{
+							type: Boolean,
+							value: true,
+							reflectToAttribute: true
+						},
+						counter:{
+							type: Boolean,
+							value: true,
+							reflectToAttribute: true
+						},
+						appendCounterTo:{
+							type: String,
+							value: ".lg-toolbar",
+							reflectToAttribute: true
+						},
+						swipeThreshold:{
+							type: Number,
+							value: 50,
+							reflectToAttribute: true
+						},
+						enableSwipe:{
+							type: Boolean,
+							value: true,
+							reflectToAttribute: true
+						},
+						enableDrag:{
+							type: Boolean,
+							value: true,
+							reflectToAttribute: true
+						},
+						dynamic:{
+							type: Boolean,
+							value: false,
+							reflectToAttribute: true
+						},
+						dynamicEl:{
+							type: Array,
+							value: [],
+							reflectToAttribute: true
+						},
+						galleryId:{
+							type: Number,
+							value: 1,
+							reflectToAttribute: true
+						},
+					},
+					ready: function() {
+						var templateNodes = Polymer.dom(this).children;
+						for(let node of templateNodes) {
+							this.$.entry.appendChild(document.importNode(node, true));
+						}
+						element = $(this.$.entry.children);
+						let that = this;
+						element.lightGallery({
+							mode: this.mode,
+							cssEasing: this.cssEasing,
+							easing: this.easing,
+							speed: this.speed,
+							height: this.height,
+							width: this.width,
+							addClass: this.addClass,
+							startClass: this.startClass,
+							backdropDuration: this.backdropDuration,
+							hideBarsDelay: this.hideBarsDelay,
+							useLeft: this.useLeft,
+							closable: this.closable,
+							loop: this.loop,
+							escKey: this.escKey,
+							keyPress: this.keyPress,
+							controls: this.controls,
+							slideEndAnimatoin: this.slideEndAnimatoin,
+							hideControlOnEnd: this.hideControlOnEnd,
+							mousewheel: this.mousewheel,
+							getCaptionFromTitleOrAlt: this.getCaptionFromTitleOrAlt,
+							appendSubHtmlTo: this.appendSubHtmlTo,
+							subHtmlSelectorRelative: this.subHtmlSelectorRelative,
+							preload: this.preload,
+							showAfterLoad: this.showAfterLoad,
+							selector: this.selector,
+							selectWithin: this.selectWithin,
+							nextHtml: this.nextHtml,
+							prevHtml: this.prevHtml,
+							index: this.index,
+							iframeMaxWidth: this.iframeMaxWidth,
+							download: this.download,
+							counter: this.counter,
+							appendCounterTo: this.appendCounterTo,
+							swipeThreshold: this.swipeThreshold,
+							enableSwipe: this.enableSwipe,
+							enableDrag: this.enableDrag,
+							dynamic: this.dynamic,
+							dynamicEl: this.dynamicEl,
+							galleryId: this.galleryId
+						});
+					},
+					attributeChanged: function(attribute, oldValue, newValue) {
+						element.lightGallery({
+							mode: this.mode,
+							cssEasing: this.cssEasing,
+							easing: this.easing,
+							speed: this.speed,
+							height: this.height,
+							width: this.width,
+							addClass: this.addClass,
+							startClass: this.startClass,
+							backdropDuration: this.backdropDuration,
+							hideBarsDelay: this.hideBarsDelay,
+							useLeft: this.useLeft,
+							closable: this.closable,
+							loop: this.loop,
+							escKey: this.escKey,
+							keyPress: this.keyPress,
+							controls: this.controls,
+							slideEndAnimatoin: this.slideEndAnimatoin,
+							hideControlOnEnd: this.hideControlOnEnd,
+							mousewheel: this.mousewheel,
+							getCaptionFromTitleOrAlt: this.getCaptionFromTitleOrAlt,
+							appendSubHtmlTo: this.appendSubHtmlTo,
+							subHtmlSelectorRelative: this.subHtmlSelectorRelative,
+							preload: this.preload,
+							showAfterLoad: this.showAfterLoad,
+							selector: this.selector,
+							selectWithin: this.selectWithin,
+							nextHtml: this.nextHtml,
+							prevHtml: this.prevHtml,
+							index: this.index,
+							iframeMaxWidth: this.iframeMaxWidth,
+							download: this.download,
+							counter: this.counter,
+							appendCounterTo: this.appendCounterTo,
+							swipeThreshold: this.swipeThreshold,
+							enableSwipe: this.enableSwipe,
+							enableDrag: this.enableDrag,
+							dynamic: this.dynamic,
+							dynamicEl: this.dynamicEl,
+							galleryId: this.galleryId
+						});
+					}
+				});
+			});
+		})(jQuery)
+	</script>
+</dom-module>

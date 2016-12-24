@@ -7,12 +7,12 @@ let paths = [];
 
 module.exports = {
 
-	getVisualRules: function(componentName, filepath) {
+	getVisualRules: function(componentPath, filepath, componentName) {
 		filepath.forEach(function(path) {
 			if(path.indexOf(".css") !== -1 || path.indexOf(".less") !== -1 ||
 					path.indexOf(".scss") !== -1 || path.indexOf(".style") !== -1) {
-				let string = path.substring(0, path.indexOf(componentName));
-				path = path.replace(string, "./component/").replace(componentName + "/", "");
+				let string = path.substring(0, path.indexOf(componentPath));
+				path = path.replace(string, "./component/").replace(componentPath + "/", "");
 				paths.push(path);
 			}
 		});

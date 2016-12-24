@@ -1,0 +1,142 @@
+<link rel='import' href='./polymer/polymer.html'>
+<link rel='import' href='./jquery-tel-input.styles.html'>
+<script src='./framework/jQuery/jquery.js'></script>
+<script src='./component/src/js/intlTelInput.js.ejs'></script>
+
+<dom-module id='jquery-tel-input'>
+	<template>
+		<div id='entry'></div>
+	</template>
+	<script>
+		jQuery.noConflict();
+		(function($) {
+			$(function()  {
+				let element;
+				Polymer({
+					is: 'jquery-tel-input',
+					properties: {
+						allowDropdown:{
+							type: Boolean,
+							value: true,
+							reflectToAttribute: true
+						},
+						autoHideDialCode:{
+							type: Boolean,
+							value: true,
+							reflectToAttribute: true
+						},
+						autoPlaceholder:{
+							type: String,
+							value: "polite",
+							reflectToAttribute: true
+						},
+						customPlaceholder:{
+							type: Object,
+							value: null,
+							reflectToAttribute: true
+						},
+						dropdownContainer:{
+							type: Object,
+							value: "",
+							reflectToAttribute: true
+						},
+						excludeCountries:{
+							type: Array,
+							value: [],
+							reflectToAttribute: true
+						},
+						formatOnDisplay:{
+							type: Boolean,
+							value: true,
+							reflectToAttribute: true
+						},
+						geoIpLookup:{
+							type: Object,
+							value: null,
+							reflectToAttribute: true
+						},
+						initialCountry:{
+							type: Object,
+							value: "",
+							reflectToAttribute: true
+						},
+						nationalMode:{
+							type: Boolean,
+							value: true,
+							reflectToAttribute: true
+						},
+						onlyCountries:{
+							type: Array,
+							value: [],
+							reflectToAttribute: true
+						},
+						placeholderNumberType:{
+							type: String,
+							value: "MOBILE",
+							reflectToAttribute: true
+						},
+						preferredCountries:{
+							type: Array,
+							value: ["us","gb"],
+							reflectToAttribute: true
+						},
+						separateDialCode:{
+							type: Boolean,
+							value: false,
+							reflectToAttribute: true
+						},
+						utilsScript:{
+							type: Object,
+							value: "",
+							reflectToAttribute: true
+						},
+					},
+					ready: function() {
+						var templateNodes = Polymer.dom(this).children;
+						for(let node of templateNodes) {
+							this.$.entry.appendChild(document.importNode(node, true));
+						}
+						element = $(this.$.entry.children);
+						let that = this;
+						element.pluginName({
+							allowDropdown: this.allowDropdown,
+							autoHideDialCode: this.autoHideDialCode,
+							autoPlaceholder: this.autoPlaceholder,
+							customPlaceholder: this.customPlaceholder,
+							dropdownContainer: this.dropdownContainer,
+							excludeCountries: this.excludeCountries,
+							formatOnDisplay: this.formatOnDisplay,
+							geoIpLookup: this.geoIpLookup,
+							initialCountry: this.initialCountry,
+							nationalMode: this.nationalMode,
+							onlyCountries: this.onlyCountries,
+							placeholderNumberType: this.placeholderNumberType,
+							preferredCountries: this.preferredCountries,
+							separateDialCode: this.separateDialCode,
+							utilsScript: this.utilsScript
+						});
+					},
+					attributeChanged: function(attribute, oldValue, newValue) {
+						element.pluginName({
+							allowDropdown: this.allowDropdown,
+							autoHideDialCode: this.autoHideDialCode,
+							autoPlaceholder: this.autoPlaceholder,
+							customPlaceholder: this.customPlaceholder,
+							dropdownContainer: this.dropdownContainer,
+							excludeCountries: this.excludeCountries,
+							formatOnDisplay: this.formatOnDisplay,
+							geoIpLookup: this.geoIpLookup,
+							initialCountry: this.initialCountry,
+							nationalMode: this.nationalMode,
+							onlyCountries: this.onlyCountries,
+							placeholderNumberType: this.placeholderNumberType,
+							preferredCountries: this.preferredCountries,
+							separateDialCode: this.separateDialCode,
+							utilsScript: this.utilsScript
+						});
+					}
+				});
+			});
+		})(jQuery)
+	</script>
+</dom-module>

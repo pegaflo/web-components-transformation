@@ -1,0 +1,184 @@
+<link rel='import' href='./polymer/polymer.html'>
+<link rel='import' href='./jquery-locationpicker.styles.html'>
+<script src='./framework/jQuery/jquery.js'></script>
+<script src='./component/dist/locationpicker.jquery.js'></script>
+
+<dom-module id='jquery-locationpicker'>
+	<template>
+		<div id='entry'></div>
+	</template>
+	<script>
+		jQuery.noConflict();
+		(function($) {
+			$(function()  {
+				let element;
+				Polymer({
+					is: 'jquery-locationpicker',
+					properties: {
+						location:{
+							type: Object,
+							value: "",
+							reflectToAttribute: true
+						},
+						locationName:{
+							type: Object,
+							value: "",
+							reflectToAttribute: true
+						},
+						radius:{
+							type: Number,
+							value: 500,
+							reflectToAttribute: true
+						},
+						zoom:{
+							type: Number,
+							value: 15,
+							reflectToAttribute: true
+						},
+						mapTypeId:{
+							type: Object,
+							value: "",
+							reflectToAttribute: true
+						},
+						styles:{
+							type: Array,
+							value: [],
+							reflectToAttribute: true
+						},
+						mapOptions:{
+							type: Object,
+							value: "",
+							reflectToAttribute: true
+						},
+						scrollwheel:{
+							type: Boolean,
+							value: true,
+							reflectToAttribute: true
+						},
+						inputBinding:{
+							type: Object,
+							value: "",
+							reflectToAttribute: true
+						},
+						enableAutocomplete:{
+							type: Boolean,
+							value: false,
+							reflectToAttribute: true
+						},
+						enableAutocompleteBlur:{
+							type: Boolean,
+							value: false,
+							reflectToAttribute: true
+						},
+						autocompleteOptions:{
+							type: Object,
+							value: null,
+							reflectToAttribute: true
+						},
+						addressFormat:{
+							type: String,
+							value: "postal_code",
+							reflectToAttribute: true
+						},
+						enableReverseGeocode:{
+							type: Boolean,
+							value: true,
+							reflectToAttribute: true
+						},
+						draggable:{
+							type: Boolean,
+							value: true,
+							reflectToAttribute: true
+						},
+						onchanged:{
+							type: Object,
+							value: "",
+							reflectToAttribute: true
+						},
+						onlocationnotfound:{
+							type: Object,
+							value: "",
+							reflectToAttribute: true
+						},
+						oninitialized:{
+							type: Object,
+							value: "",
+							reflectToAttribute: true
+						},
+						markerIcon:{
+							type: Object,
+							value: "",
+							reflectToAttribute: true
+						},
+						markerDraggable:{
+							type: Boolean,
+							value: true,
+							reflectToAttribute: true
+						},
+						markerVisible:{
+							type: Boolean,
+							value: true,
+							reflectToAttribute: true
+						},
+					},
+					ready: function() {
+						var templateNodes = Polymer.dom(this).children;
+						for(let node of templateNodes) {
+							this.$.entry.appendChild(document.importNode(node, true));
+						}
+						element = $(this.$.entry.children);
+						let that = this;
+						element.locationpicker({
+							location: this.location,
+							locationName: this.locationName,
+							radius: this.radius,
+							zoom: this.zoom,
+							mapTypeId: this.mapTypeId,
+							styles: this.styles,
+							mapOptions: this.mapOptions,
+							scrollwheel: this.scrollwheel,
+							inputBinding: this.inputBinding,
+							enableAutocomplete: this.enableAutocomplete,
+							enableAutocompleteBlur: this.enableAutocompleteBlur,
+							autocompleteOptions: this.autocompleteOptions,
+							addressFormat: this.addressFormat,
+							enableReverseGeocode: this.enableReverseGeocode,
+							draggable: this.draggable,
+							onchanged: this.onchanged,
+							onlocationnotfound: this.onlocationnotfound,
+							oninitialized: this.oninitialized,
+							markerIcon: this.markerIcon,
+							markerDraggable: this.markerDraggable,
+							markerVisible: this.markerVisible
+						});
+					},
+					attributeChanged: function(attribute, oldValue, newValue) {
+						element.locationpicker({
+							location: this.location,
+							locationName: this.locationName,
+							radius: this.radius,
+							zoom: this.zoom,
+							mapTypeId: this.mapTypeId,
+							styles: this.styles,
+							mapOptions: this.mapOptions,
+							scrollwheel: this.scrollwheel,
+							inputBinding: this.inputBinding,
+							enableAutocomplete: this.enableAutocomplete,
+							enableAutocompleteBlur: this.enableAutocompleteBlur,
+							autocompleteOptions: this.autocompleteOptions,
+							addressFormat: this.addressFormat,
+							enableReverseGeocode: this.enableReverseGeocode,
+							draggable: this.draggable,
+							onchanged: this.onchanged,
+							onlocationnotfound: this.onlocationnotfound,
+							oninitialized: this.oninitialized,
+							markerIcon: this.markerIcon,
+							markerDraggable: this.markerDraggable,
+							markerVisible: this.markerVisible
+						});
+					}
+				});
+			});
+		})(jQuery)
+	</script>
+</dom-module>

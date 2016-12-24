@@ -1,0 +1,37 @@
+<link rel='import' href='./polymer/polymer.html'>
+<link rel='import' href='./jquery-selectize.styles.html'>
+<script src='./framework/jQuery/jquery.js'></script>
+<script src='./component/src/selectize.js'></script>
+
+<dom-module id='jquery-selectize'>
+	<template>
+		<div id='entry'></div>
+	</template>
+	<script>
+		jQuery.noConflict();
+		(function($) {
+			$(function()  {
+				let element;
+				Polymer({
+					is: 'jquery-selectize',
+					properties: {
+					},
+					ready: function() {
+						var templateNodes = Polymer.dom(this).children;
+						for(let node of templateNodes) {
+							this.$.entry.appendChild(document.importNode(node, true));
+						}
+						element = $(this.$.entry.children);
+						let that = this;
+						element.undefined({
+						});
+					},
+					attributeChanged: function(attribute, oldValue, newValue) {
+						element.undefined({
+						});
+					}
+				});
+			});
+		})(jQuery)
+	</script>
+</dom-module>

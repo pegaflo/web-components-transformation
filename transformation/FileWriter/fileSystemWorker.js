@@ -6,7 +6,7 @@ let componentPreparation = require('../ComponentPreparation/componentPreparation
 
 module.exports = {
 	writeComponentFile: function(componentName, detectedComponentType, properties, attributeChangedFunction, creationFunction, visualFile, template, componentMainFile, frameworkPaths, frameworkStylePath) {
-		var stream = fs.createWriteStream("./dist/jquery/" + componentName + "/" + componentName + ".html");
+		var stream = fs.createWriteStream("./dist/" + componentName + "/" + componentName + ".html");
 		stream.once('open', function(fd) {
 			stream.write("<link rel='import' href='./polymer/polymer.html'>\n");
 			stream.write("<link rel='import' href='" + visualFile + "'>\n");
@@ -59,7 +59,7 @@ module.exports = {
 	},
 
 	writeVisualFile: function(componentName, paths,  filename) {
-		var stream = fs.createWriteStream("./dist/jquery/" + componentName + "/" + componentName + "." + filename);
+		var stream = fs.createWriteStream("./dist/" + componentName + "/" + componentName + "." + filename);
 		stream.once('open', function(fd) {
 			paths.forEach(function(path) {
 				stream.write("<link rel='stylesheet' href='" + path + "' />\n");
@@ -72,7 +72,7 @@ module.exports = {
 	},
 
 	debugWriteFile: function(componentName, content) {
-		fs.writeFile("./dist/jquery/" + componentName + "/debug." + componentName + ".txt", JSON.stringify(content, null, 2), function(err) {
+		fs.writeFile("./dist/" + componentName + "/debug." + componentName + ".txt", JSON.stringify(content, null, 2), function(err) {
 		    if(err) {
 		        return console.log(err);
 		    }
@@ -80,7 +80,7 @@ module.exports = {
 	},
 
 	createComponentFolder: function(componentName, callback) {
-		mkdirp('./dist/jquery/' + componentName, function (err) {
+		mkdirp('./dist/' + componentName, function (err) {
     		if (err) console.error(err);
 			console.log("New Folder in ./dist/ for the Component created");
 			callback();
@@ -94,7 +94,7 @@ module.exports = {
 		let polymerFolder = polymerPath.replace("polymer.html", "").replace("../../", "./");
 
 		console.log(polymerFolder);
-		copydir(polymerFolder, './dist/jquery/' + componentName + '/polymer/', function() {});
+		copydir(polymerFolder, './dist/' + componentName + '/polymer/', function() {});
 
 		frameworkPath.forEach(function (path) {
 			if (detectedComponentType === "jquery") {
@@ -109,14 +109,14 @@ module.exports = {
 		});
 
 		if (detectedComponentType === "jquery") {
-			copydir(jQueryFolder, './dist/jquery/' + componentName + '/framework/jQuery', function() {});
+			copydir(jQueryFolder, './dist/' + componentName + '/framework/jQuery', function() {});
 		} else if (detectedComponentType === "jquery-ui") {
 			console.log(jQueryFolder);
 			console.log(jQueryUIFolder);
-			copydir(jQueryFolder, './dist/jquery/' + componentName + '/framework/jQuery', function() {});
-			copydir(jQueryUIFolder, './dist/jquery/' + componentName + '/framework/jQueryUI', function() {});
+			copydir(jQueryFolder, './dist/' + componentName + '/framework/jQuery', function() {});
+			copydir(jQueryUIFolder, './dist/' + componentName + '/framework/jQueryUI', function() {});
 		}
 
-		copydir(__dirname + "/../../" + componentDirectory, './dist/jquery/' + componentName + '/component/', function() {});
+		copydir(__dirname + "/../../" + componentDirectory, './dist/' + componentName + '/component/', function() {});
 	}
 };

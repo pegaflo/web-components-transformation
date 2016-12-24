@@ -1,0 +1,37 @@
+<link rel='import' href='./polymer/polymer.html'>
+<link rel='import' href='./jquery-upvote.styles.html'>
+<script src='./framework/jQuery/jquery.js'></script>
+<script src='./component/lib/jquery.upvote.js'></script>
+
+<dom-module id='jquery-upvote'>
+	<template>
+		<div id='entry'></div>
+	</template>
+	<script>
+		jQuery.noConflict();
+		(function($) {
+			$(function()  {
+				let element;
+				Polymer({
+					is: 'jquery-upvote',
+					properties: {
+					},
+					ready: function() {
+						var templateNodes = Polymer.dom(this).children;
+						for(let node of templateNodes) {
+							this.$.entry.appendChild(document.importNode(node, true));
+						}
+						element = $(this.$.entry.children);
+						let that = this;
+						element.upvote({
+						});
+					},
+					attributeChanged: function(attribute, oldValue, newValue) {
+						element.upvote({
+						});
+					}
+				});
+			});
+		})(jQuery)
+	</script>
+</dom-module>
