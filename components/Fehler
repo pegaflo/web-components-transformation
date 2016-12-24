@@ -1,0 +1,48 @@
+jQueryUI
+acescroll:			(ok)	
+apeye:				(ok)	
+filterbar:			(ok)	
+imFeedBack:			(not ok)  --> auslesen creationname nicht möglich( mehrfache Definition Widget, schwer zu erkennen)
+jbPivot:			(ok)	
+jEdi:				(ok)	
+JQM-carousel:			(ok)	
+jquerui-l2l:			(ok)	
+jquery-colorpicker:		(ok)	
+jquery-disabler:		(ok)	
+jquery-marcopolo:		(ok)	
+jquerymobile-editablelistview:	(ok)	
+jquery-mod-highlighter:		(ok)	
+jquery-tagger:			(ok)	
+jquery-toolbar:			(ok)	
+jQueryUI-Item-Selector:		(ok)	
+jquery-ui-labyrinth:		(ok)	
+jQueryUI-Month-Selector:	(ok)	
+jquery-widget-polygonal-graph:	(ok)	
+tabview:			(ok)	
+
+
+jQuery
+datetimepicker-master: 			
+flexible-stars-master: 			
+intl-tel-input-master: 			
+ion-rangeSlider-master: 		
+jCrossword-master: 			
+jquery-gravatar-master:			
+jquery-locationpicker-plugin: 		
+jQuery-Mask-Plugin:			
+jquery-powertip-master:			
+jquery-treetable:			
+jquery-upvote:				
+jsphotocradle:				
+lightgallery:				
+MetCast:				
+select2:				
+selectize.js:				
+select-or-die:				
+snapper:				
+taggingJS:				
+timepicker:				
+
+
+
+

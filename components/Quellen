@@ -22,15 +22,15 @@ timepicker:				https://github.com/jonthornton/jquery-timepicker
 
 
 jQueryUI
-acescroll:				https://github.com/jebaird/acescroll
-apeye:					https://github.com/MasonM/apeye
-filterbar:				https://github.com/frequent/filterbar
-imFeedBack:				https://github.com/lesgreen/imFeedBack
-jbPivot:				https://github.com/uniclau/jbPivot
+acescroll:			(ok)	https://github.com/jebaird/acescroll
+apeye:				(ok)	https://github.com/MasonM/apeye
+filterbar:			(ok)	https://github.com/frequent/filterbar
+imFeedBack:			(notok)	https://github.com/lesgreen/imFeedBack 			--> auslesen creationname nicht möglich
+jbPivot:			(ok)	https://github.com/uniclau/jbPivot
 jEdi:					https://github.com/dlehmann/jEdi
 JQM-carousel:				https://github.com/frequent/JQM-carousel
 jquerui-l2l:				https://github.com/krampstudio/jquerui-l2l
-jquery-colorpicker:			https://github.com/evoluteur/colorpicker
+jquery-colorpicker:		(ok)	https://github.com/evoluteur/colorpicker
 jquery-disabler:			https://github.com/dgestep/jquery-disabler
 jquery-marcopolo:			https://github.com/jstayton/jquery-marcopolo
 jquerymobile-editablelistview:		https://github.com/baig/jquerymobile-editablelistview

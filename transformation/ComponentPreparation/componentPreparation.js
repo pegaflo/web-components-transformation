@@ -85,7 +85,6 @@ module.exports = {
 	},
 
 	parseJavaScriptFile: function(path, callback) {
-		console.log(path);
 		fs.readFile(path, 'utf8', function (err,data) {
 		  if (err) throw err;
 		  console.log("JavaScript File is parsed");

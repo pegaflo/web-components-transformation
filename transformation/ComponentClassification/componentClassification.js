@@ -14,8 +14,8 @@ module.exports = {
 			}
 		});
 
-		if(package_json_found !== true) {
-			detectedComponentType = module.exports.analyzePackageJSON(path_to_package_json, function(componentType) {
+		if(package_json_found === true) {
+			detectedComponentType = module.exports.analyzePackageJSON(path_to_package_json, analysisResult, function(componentType) {
 				callback(componentType);
 			});
 		} else {
@@ -25,7 +25,7 @@ module.exports = {
 		}
 	},
 
-	analyzePackageJSON: function(path, callback) {
+	analyzePackageJSON: function(path, analysisResult, callback) {
 		readJson(path, console.error, false, function (er, data) {
 			if (er) {
 				return;
